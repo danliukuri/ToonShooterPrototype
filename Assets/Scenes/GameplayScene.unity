@@ -1341,6 +1341,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4483306839220528, guid: dec6e1dfe0585314386ba9c3b833424a, type: 3}
   m_PrefabInstance: {fileID: 798948896}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &155197032
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 155197033}
+  m_Layer: 0
+  m_Name: PlayerSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &155197033
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 155197032}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &165322940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3396,6 +3427,7 @@ GameObject:
   - component: {fileID: 424405333}
   - component: {fileID: 424405332}
   - component: {fileID: 424405334}
+  - component: {fileID: 424405335}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -3418,6 +3450,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 424405334}
+  - {fileID: 424405335}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -3462,6 +3495,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e37c36243d5c9744697956d9140eb2ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &424405335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424405331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ed02dd51e0b47e1a885c7a29863c352, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPoint: {fileID: 155197033}
+  factoryConfig: {fileID: 11400000, guid: 4d14dc13c2b2062429a658a56ad61c15, type: 2}
+  poolConfig: {fileID: 11400000, guid: b191e04ae34159f4a80225f5671a7e7b, type: 2}
 --- !u!1001 &431786682
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15773,3 +15821,4 @@ SceneRoots:
   - {fileID: 1388537712}
   - {fileID: 2103966895}
   - {fileID: 275743958}
+  - {fileID: 155197033}
