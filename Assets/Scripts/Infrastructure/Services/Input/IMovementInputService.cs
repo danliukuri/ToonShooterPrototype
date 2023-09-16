@@ -1,4 +1,5 @@
-﻿using ToonShooterPrototype.Utilities.Wrappers;
+﻿using System;
+using ToonShooterPrototype.Utilities.Wrappers;
 
 namespace ToonShooterPrototype.Infrastructure.Services.Input
 {
@@ -6,5 +7,6 @@ namespace ToonShooterPrototype.Infrastructure.Services.Input
     {
         IObservableValue<float> HorizontalAxis { get; }
         IObservableValue<float> VerticalAxis { get; }
+        event Action JumpButtonPressed;
     }
 }
