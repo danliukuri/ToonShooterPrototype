@@ -31,15 +31,11 @@ namespace ToonShooterPrototype.Features.Player
             _movementInputService.JumpButtonPressed -= Jump;
         }
 
-        public void Tick()
-        {
-            MovePlayer((_player.MovementForce.normalized * _player.Config.MoveSpeed + _player.JumpingForce)
-                       * Time.deltaTime);
-        }
-
-        private void MoveVertically(float value) => _player.MovementForce.z = value;
+        public void Tick() => MovePlayer((CalculateMovementForce() + _player.JumpingForce) * Time.deltaTime);
 
         private void MoveHorizontally(float value) => _player.MovementForce.x = value;
+
+        private void MoveVertically(float value) => _player.MovementForce.z = value;
 
         private void Jump()
         {
@@ -54,6 +50,14 @@ namespace ToonShooterPrototype.Features.Player
         {
             _player.CharacterController.Move(movementForce);
             _player.IsGrounded = _player.CharacterController.isGrounded;
+        }
+
+        private Vector3 CalculateMovementForce()
+        {
+            Vector3 relativeMovementForce = _player.MovementForce.x * _player.Transform.right +
+                                            _player.MovementForce.z * _player.Transform.forward;
+
+            return relativeMovementForce.normalized * _player.Config.MoveSpeed;
         }
     }
 }
