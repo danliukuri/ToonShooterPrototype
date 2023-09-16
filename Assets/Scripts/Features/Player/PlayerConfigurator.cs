@@ -19,8 +19,12 @@ namespace ToonShooterPrototype.Features.Player
         public void Configure(PlayerDataProvider component)
         {
             PlayerData data = component.Data;
+
             data.Config = _playerConfig;
+            data.MoveSpeed = _playerConfig.MoveSpeed;
+
             data.CharacterController = component.GetComponent<CharacterController>();
+
             data.Transform = component.GetComponent<Transform>();
             data.Transform.position = _spawnPoint.position;
         }

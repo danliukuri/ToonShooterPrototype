@@ -10,6 +10,7 @@ namespace ToonShooterPrototype.Data.Dynamic
 
         public PlayerConfig Config { get; set; }
 
+        public float MoveSpeed { get; set; }
         public bool IsGrounded { get; set; }
 
         private Vector3 _jumpingForce;
