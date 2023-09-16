@@ -11,9 +11,6 @@ namespace ToonShooterPrototype.Features.Player
         private readonly IMovementInputService _movementInputService;
         private readonly PlayerData _player;
 
-        private Vector3 _movementForce;
-        private bool _isNeededToMove;
-
         public PlayerMover(IMovementInputService movementInputService, PlayerData player)
         {
             _movementInputService = movementInputService;
@@ -22,38 +19,41 @@ namespace ToonShooterPrototype.Features.Player
 
         public void Initialize()
         {
-            _movementInputService.HorizontalAxis.ValueUpdated += MovePlayerHorizontally;
-            _movementInputService.VerticalAxis.ValueUpdated += MovePlayerVertically;
+            _movementInputService.HorizontalAxis.ValueUpdated += MoveHorizontally;
+            _movementInputService.VerticalAxis.ValueUpdated += MoveVertically;
+            _movementInputService.JumpButtonPressed += Jump;
         }
 
         public void Dispose()
         {
-            _movementInputService.HorizontalAxis.ValueUpdated -= MovePlayerHorizontally;
-            _movementInputService.VerticalAxis.ValueUpdated -= MovePlayerVertically;
+            _movementInputService.HorizontalAxis.ValueUpdated -= MoveHorizontally;
+            _movementInputService.VerticalAxis.ValueUpdated -= MoveVertically;
+            _movementInputService.JumpButtonPressed -= Jump;
         }
 
         public void Tick()
         {
-            if (_isNeededToMove)
-                MovePlayer(_movementForce.normalized * _player.Config.MoveSpeed * Time.deltaTime);
+            MovePlayer((_player.MovementForce.normalized * _player.Config.MoveSpeed + _player.JumpingForce)
+                       * Time.deltaTime);
         }
 
-        private void MovePlayerVertically(float value)
-        {
-            _movementForce.z = value;
-            _isNeededToMove = true;
-        }
+        private void MoveVertically(float value) => _player.MovementForce.z = value;
 
-        private void MovePlayerHorizontally(float value)
+        private void MoveHorizontally(float value) => _player.MovementForce.x = value;
+
+        private void Jump()
         {
-            _movementForce.x = value;
-            _isNeededToMove = true;
+            if (_player.IsGrounded)
+            {
+                _player.JumpingForce.y = _player.Config.JumpPower;
+                _player.IsGrounded = false;
+            }
         }
 
         private void MovePlayer(Vector3 movementForce)
         {
             _player.CharacterController.Move(movementForce);
-            _isNeededToMove = false;
+            _player.IsGrounded = _player.CharacterController.isGrounded;
         }
     }
 }
