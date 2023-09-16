@@ -22,6 +22,8 @@ namespace ToonShooterPrototype.Features.Player
             _movementInputService.HorizontalAxis.ValueUpdated += MoveHorizontally;
             _movementInputService.VerticalAxis.ValueUpdated += MoveVertically;
             _movementInputService.JumpButtonPressed += Jump;
+            _movementInputService.SprintButtonPressed += StartSprint;
+            _movementInputService.SprintButtonReleased += FinishSprint;
         }
 
         public void Dispose()
@@ -29,8 +31,11 @@ namespace ToonShooterPrototype.Features.Player
             _movementInputService.HorizontalAxis.ValueUpdated -= MoveHorizontally;
             _movementInputService.VerticalAxis.ValueUpdated -= MoveVertically;
             _movementInputService.JumpButtonPressed -= Jump;
-        }
+            _movementInputService.SprintButtonPressed -= StartSprint;
+            _movementInputService.SprintButtonReleased -= FinishSprint;
 
+        }
+        
         public void Tick() => MovePlayer((CalculateMovementForce() + _player.JumpingForce) * Time.deltaTime);
 
         private void MoveHorizontally(float value) => _player.MovementForce.x = value;
@@ -57,7 +62,11 @@ namespace ToonShooterPrototype.Features.Player
             Vector3 relativeMovementForce = _player.MovementForce.x * _player.Transform.right +
                                             _player.MovementForce.z * _player.Transform.forward;
 
-            return relativeMovementForce.normalized * _player.Config.MoveSpeed;
+            return relativeMovementForce.normalized * _player.MoveSpeed;
         }
+
+        private void StartSprint() => _player.MoveSpeed = _player.Config.SprintSpeed;
+
+        private void FinishSprint() => _player.MoveSpeed = _player.Config.MoveSpeed;
     }
 }
