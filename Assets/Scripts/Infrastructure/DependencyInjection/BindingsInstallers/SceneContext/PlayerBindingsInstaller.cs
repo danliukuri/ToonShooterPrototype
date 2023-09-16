@@ -1,4 +1,5 @@
 ﻿using ToonShooterPrototype.Data.Dynamic;
+using ToonShooterPrototype.Data.Static.Configuration;
 using ToonShooterPrototype.Data.Static.Configuration.Creation;
 using ToonShooterPrototype.Features.Player;
 using ToonShooterPrototype.Infrastructure.Creation.Factories;
@@ -12,6 +13,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
     {
         [SerializeField] private Transform spawnPoint;
 
+        [SerializeField] private PlayerConfig playerConfig;
         [SerializeField] private FactoryConfig factoryConfig;
         [SerializeField] private PoolConfig poolConfig;
 
@@ -20,7 +22,11 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             BindConfigurator();
             BindFactory();
             BindObjectPool();
+
             BindData();
+            BindConfiguration();
+
+            BindMover();
         }
 
         private void BindConfigurator()
@@ -63,8 +69,19 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             Container
                 .BindInterfacesAndSelfTo<PlayerData>()
                 .AsSingle()
-                .WhenInjectedInto<PlayerDataProvider>();
+                .WhenInjectedInto(typeof(PlayerDataProvider), typeof(PlayerMover));
         }
+
+        private void BindConfiguration()
+        {
+            Container
+                .BindInterfacesAndSelfTo<PlayerConfig>()
+                .FromScriptableObject(playerConfig)
+                .AsSingle()
+                .WhenInjectedInto<PlayerConfigurator>();
+        }
+
+        private void BindMover() => Container.BindInterfacesTo<PlayerMover>().AsSingle();
     }
 }
 

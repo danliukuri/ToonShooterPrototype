@@ -3508,6 +3508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 155197033}
+  playerConfig: {fileID: 11400000, guid: d7f9f09d8692c9a43a1b5c660d05d6d4, type: 2}
   factoryConfig: {fileID: 11400000, guid: 4d14dc13c2b2062429a658a56ad61c15, type: 2}
   poolConfig: {fileID: 11400000, guid: b191e04ae34159f4a80225f5671a7e7b, type: 2}
 --- !u!1001 &431786682
