@@ -5,8 +5,14 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
 {
     public class InputServicesBindingsInstaller : MonoInstaller
     {
-        public override void InstallBindings() => BindMovementInputService();
+        public override void InstallBindings()
+        {
+            BindMovementInputService();
+            BindAimInputService();
+        }
 
         private void BindMovementInputService() => Container.BindInterfacesTo<MovementInputService>().AsSingle();
+
+        private void BindAimInputService() => Container.BindInterfacesTo<AimInputService>().AsSingle();
     }
 }
