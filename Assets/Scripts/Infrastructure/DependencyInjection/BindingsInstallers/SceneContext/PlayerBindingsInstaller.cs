@@ -31,6 +31,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             BindConfiguration();
 
             BindMover();
+            PlayerRotator();
             BindCamera();
         }
 
@@ -87,6 +88,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
         }
 
         private void BindMover() => Container.BindInterfacesTo<PlayerMover>().AsSingle();
+        private void PlayerRotator() => Container.BindInterfacesTo<PlayerRotator>().AsSingle();
 
         private void BindCamera()
         {
