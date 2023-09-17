@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86b41d5a988c49dbb9706a27fcb20cb9, type: 3}
-  m_Name: PlayerConfig
+  m_Script: {fileID: 11500000, guid: 1ca7df6f1f974ceaa134dd94e6592b0e, type: 3}
+  m_Name: PlayerCameraConfig
   m_EditorClassIdentifier: 
-  <MoveSpeed>k__BackingField: 5
-  <SprintSpeed>k__BackingField: 10
-  <JumpPower>k__BackingField: 8
+  <MaxViewDistance>k__BackingField: 100
+  <AttractiveObjectsTags>k__BackingField:
+  - Ground
