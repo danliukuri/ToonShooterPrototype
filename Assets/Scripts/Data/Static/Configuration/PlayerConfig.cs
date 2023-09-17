@@ -2,7 +2,7 @@
 
 namespace ToonShooterPrototype.Data.Static.Configuration
 {
-    [CreateAssetMenu(fileName = nameof(PlayerConfig), menuName = "Configuration/Player")]
+    [CreateAssetMenu(fileName = nameof(PlayerConfig), menuName = "Configuration/Player/Data")]
     public class PlayerConfig : ScriptableObject
     {
         [field: SerializeField, Min(default)] public float MoveSpeed { get; private set; }
