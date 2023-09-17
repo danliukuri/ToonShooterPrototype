@@ -3733,6 +3733,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnPoint: {fileID: 155197033}
   playerCinemachineCamera: {fileID: 500032599}
+  playerCamera: {fileID: 1388537711}
+  playerCameraConfig: {fileID: 11400000, guid: cb0b35421974a8f4bbb1cf6a22e44e2f, type: 2}
   playerConfig: {fileID: 11400000, guid: d7f9f09d8692c9a43a1b5c660d05d6d4, type: 2}
   factoryConfig: {fileID: 11400000, guid: 4d14dc13c2b2062429a658a56ad61c15, type: 2}
   poolConfig: {fileID: 11400000, guid: b191e04ae34159f4a80225f5671a7e7b, type: 2}
@@ -12299,7 +12301,7 @@ GameObject:
   - component: {fileID: 1556543933}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295

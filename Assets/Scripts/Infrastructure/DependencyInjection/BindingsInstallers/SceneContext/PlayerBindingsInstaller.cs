@@ -14,7 +14,9 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
     {
         [SerializeField] private Transform spawnPoint;
         [SerializeField] private CinemachineVirtualCameraBase playerCinemachineCamera;
+        [SerializeField] private Camera playerCamera;
 
+        [SerializeField] private PlayerCameraConfig playerCameraConfig;
         [SerializeField] private PlayerConfig playerConfig;
         [SerializeField] private FactoryConfig factoryConfig;
         [SerializeField] private PoolConfig poolConfig;
@@ -93,6 +95,18 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
                 .FromInstance(playerCinemachineCamera)
                 .AsSingle()
                 .WhenInjectedInto<PlayerConfigurator>();
+
+            Container
+                .Bind<Camera>()
+                .FromInstance(playerCamera)
+                .AsSingle()
+                .WhenInjectedInto<PlayerConfigurator>();
+
+            Container
+                .BindInterfacesAndSelfTo<PlayerCameraConfig>()
+                .FromScriptableObject(playerCameraConfig)
+                .AsSingle()
+                .WhenInjectedInto<PlayerRotator>();
         }
     }
 }
