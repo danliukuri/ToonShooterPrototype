@@ -1,4 +1,5 @@
-﻿using ToonShooterPrototype.Data.Dynamic;
+﻿using Cinemachine;
+using ToonShooterPrototype.Data.Dynamic;
 using ToonShooterPrototype.Data.Static.Configuration;
 using ToonShooterPrototype.Data.Static.Configuration.Creation;
 using ToonShooterPrototype.Features.Player;
@@ -12,6 +13,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
     public class PlayerBindingsInstaller : MonoInstaller
     {
         [SerializeField] private Transform spawnPoint;
+        [SerializeField] private CinemachineVirtualCameraBase playerCinemachineCamera;
 
         [SerializeField] private PlayerConfig playerConfig;
         [SerializeField] private FactoryConfig factoryConfig;
@@ -27,6 +29,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             BindConfiguration();
 
             BindMover();
+            BindCamera();
         }
 
         private void BindConfigurator()
@@ -69,7 +72,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             Container
                 .BindInterfacesAndSelfTo<PlayerData>()
                 .AsSingle()
-                .WhenInjectedInto(typeof(PlayerDataProvider), typeof(PlayerMover));
+                .WhenInjectedInto(typeof(PlayerDataProvider), typeof(PlayerMover), typeof(PlayerRotator));
         }
 
         private void BindConfiguration()
@@ -82,6 +85,15 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
         }
 
         private void BindMover() => Container.BindInterfacesTo<PlayerMover>().AsSingle();
+
+        private void BindCamera()
+        {
+            Container
+                .BindInterfacesTo<CinemachineVirtualCameraBase>()
+                .FromInstance(playerCinemachineCamera)
+                .AsSingle()
+                .WhenInjectedInto<PlayerConfigurator>();
+        }
     }
 }
 
