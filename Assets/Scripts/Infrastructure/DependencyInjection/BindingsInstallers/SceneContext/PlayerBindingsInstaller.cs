@@ -13,13 +13,14 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
     public class PlayerBindingsInstaller : MonoInstaller
     {
         [SerializeField] private Transform spawnPoint;
-        [SerializeField] private CinemachineVirtualCameraBase playerCinemachineCamera;
-        [SerializeField] private Camera playerCamera;
-
-        [SerializeField] private PlayerCameraConfig playerCameraConfig;
         [SerializeField] private PlayerConfig playerConfig;
         [SerializeField] private FactoryConfig factoryConfig;
         [SerializeField] private PoolConfig poolConfig;
+
+        [SerializeField] private CinemachineFreeLook freeLookCamera;
+        [SerializeField] private CinemachineFreeLook aimCamera;
+        [SerializeField] private Transform playerCamera;
+        [SerializeField] private PlayerCameraConfig playerCameraConfig;
 
         public override void InstallBindings()
         {
@@ -32,7 +33,8 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
 
             BindMover();
             PlayerRotator();
-            BindCamera();
+
+            BindCameraData();
         }
 
         private void BindConfigurator()
@@ -87,28 +89,18 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
                 .WhenInjectedInto<PlayerConfigurator>();
         }
 
+
         private void BindMover() => Container.BindInterfacesTo<PlayerMover>().AsSingle();
+
         private void PlayerRotator() => Container.BindInterfacesTo<PlayerRotator>().AsSingle();
 
-        private void BindCamera()
+        private void BindCameraData()
         {
             Container
-                .BindInterfacesTo<CinemachineVirtualCameraBase>()
-                .FromInstance(playerCinemachineCamera)
+                .BindInterfacesAndSelfTo<PlayerCameraData>()
                 .AsSingle()
-                .WhenInjectedInto<PlayerConfigurator>();
-
-            Container
-                .Bind<Camera>()
-                .FromInstance(playerCamera)
-                .AsSingle()
-                .WhenInjectedInto<PlayerConfigurator>();
-
-            Container
-                .BindInterfacesAndSelfTo<PlayerCameraConfig>()
-                .FromScriptableObject(playerCameraConfig)
-                .AsSingle()
-                .WhenInjectedInto<PlayerRotator>();
+                .WithArguments(playerCameraConfig, playerCamera, freeLookCamera, aimCamera)
+                .WhenInjectedInto(typeof(PlayerConfigurator), typeof(PlayerViewSwitcher), typeof(PlayerRotator));
         }
     }
 }

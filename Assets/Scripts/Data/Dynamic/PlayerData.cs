@@ -5,7 +5,6 @@ namespace ToonShooterPrototype.Data.Dynamic
 {
     public class PlayerData : IGroundable
     {
-        public Transform Camera { get; set; }
         public Transform Transform { get; set; }
         public CharacterController CharacterController { get; set; }
 

@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using ToonShooterPrototype.Data.Dynamic;
-using ToonShooterPrototype.Data.Static.Configuration;
 using UnityEngine;
 using Zenject;
 
@@ -8,12 +7,12 @@ namespace ToonShooterPrototype.Features.Player
 {
     public class PlayerRotator : ILateTickable
     {
-        private readonly PlayerCameraConfig _cameraConfig;
+        private readonly PlayerCameraData _camera;
         private readonly PlayerData _player;
 
-        public PlayerRotator(PlayerCameraConfig cameraConfig, PlayerData player)
+        public PlayerRotator(PlayerCameraData camera, PlayerData player)
         {
-            _cameraConfig = cameraConfig;
+            _camera = camera;
             _player = player;
         }
 
@@ -31,11 +30,11 @@ namespace ToonShooterPrototype.Features.Player
 
         private Vector3 GetViewDirection()
         {
-            Vector3 cameraDirection = _player.Camera.forward;
-            var ray = new Ray(_player.Camera.position, cameraDirection);
+            Vector3 cameraDirection = _camera.Transform.forward;
+            var ray = new Ray(_camera.Transform.position, cameraDirection);
 
-            return Physics.Raycast(ray, out RaycastHit hit, _cameraConfig.MaxViewDistance) &&
-                   _cameraConfig.AttractiveObjectsTags.Any(hit.collider.CompareTag)
+            return Physics.Raycast(ray, out RaycastHit hit, _camera.Config.MaxViewDistance) &&
+                   _camera.Config.AttractiveObjectsTags.Any(hit.collider.CompareTag)
                 ? hit.point - _player.Transform.position
                 : cameraDirection;
         }
