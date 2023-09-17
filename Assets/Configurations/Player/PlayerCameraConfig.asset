@@ -15,3 +15,4 @@ MonoBehaviour:
   <MaxViewDistance>k__BackingField: 100
   <AttractiveObjectsTags>k__BackingField:
   - Ground
+  - Enemy
