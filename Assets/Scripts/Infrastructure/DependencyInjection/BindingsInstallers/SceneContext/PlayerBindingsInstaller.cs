@@ -35,6 +35,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             PlayerRotator();
 
             BindCameraData();
+            BindViewSwitcher();
         }
 
         private void BindConfigurator()
@@ -102,6 +103,8 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
                 .WithArguments(playerCameraConfig, playerCamera, freeLookCamera, aimCamera)
                 .WhenInjectedInto(typeof(PlayerConfigurator), typeof(PlayerViewSwitcher), typeof(PlayerRotator));
         }
+
+        private void BindViewSwitcher() => Container.BindInterfacesTo<PlayerViewSwitcher>().AsSingle();
     }
 }
 
