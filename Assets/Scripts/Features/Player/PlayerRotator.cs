@@ -33,10 +33,16 @@ namespace ToonShooterPrototype.Features.Player
             Vector3 cameraDirection = _camera.Transform.forward;
             var ray = new Ray(_camera.Transform.position, cameraDirection);
 
-            return Physics.Raycast(ray, out RaycastHit hit, _camera.Config.MaxViewDistance) &&
-                   _camera.Config.AttractiveObjectsTags.Any(hit.collider.CompareTag)
-                ? hit.point - _player.Transform.position
-                : cameraDirection;
+            Vector3 viewDirection = cameraDirection;
+            _camera.ViewPoint = default;
+
+            if (Physics.Raycast(ray, out RaycastHit hit, _camera.Config.MaxViewDistance))
+            {
+                viewDirection = hit.point - _player.Transform.position;
+                _camera.ViewPoint = hit.point;
+            }
+
+            return viewDirection;
         }
     }
 }
