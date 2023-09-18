@@ -30,6 +30,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             BindObjectPool();
 
             BindData();
+            BindInventoryData();
             BindConfiguration();
 
             BindMover();
@@ -82,6 +83,14 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
                 .AsSingle()
                 .WhenInjectedInto(typeof(PlayerDataProvider), typeof(PlayerMover), typeof(PlayerRotator),
                     typeof(EnemyAi), typeof(PlayerShooter));
+        }
+
+        private void BindInventoryData()
+        {
+            Container
+                .BindInterfacesAndSelfTo<PlayerInventoryData>()
+                .AsSingle()
+                .WhenInjectedInto<PlayerConfigurator>();
         }
 
         private void BindConfiguration()

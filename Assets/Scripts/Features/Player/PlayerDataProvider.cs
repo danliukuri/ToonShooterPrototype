@@ -1,4 +1,5 @@
-﻿using ToonShooterPrototype.Data.Dynamic;
+﻿using System.Linq;
+using ToonShooterPrototype.Data.Dynamic;
 using ToonShooterPrototype.Features.Weapon;
 using UnityEngine;
 using Zenject;
@@ -14,7 +15,9 @@ namespace ToonShooterPrototype.Features.Player
 
         private void Awake()
         {
-            Data.Weapon = GetComponentInChildren<IShootingWeaponDataProvider>().Data;
+            Data.Inventory.ShootingWeapons = GetComponentsInChildren<IShootingWeaponDataProvider>()
+                .Select(weaponDataProvider => weaponDataProvider.Data).ToList();
+            Data.Inventory.CurrentWeapon = Data.Inventory.ShootingWeapons.First();
         }
     }
 }

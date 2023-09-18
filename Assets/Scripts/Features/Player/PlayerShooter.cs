@@ -29,7 +29,7 @@ namespace ToonShooterPrototype.Features.Player
         private void TryToShoot()
         {
             if (_playerCamera.ViewPoint.HasValue && _shooter.IsAbleToShoot)
-                _shooter.Shoot(_player.Weapon, _playerCamera.ViewPoint.Value);
+                _shooter.Shoot(_player.Inventory.CurrentWeapon, _playerCamera.ViewPoint.Value);
         }
     }
 }
