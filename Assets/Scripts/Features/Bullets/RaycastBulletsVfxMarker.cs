@@ -2,5 +2,5 @@
 
 namespace ToonShooterPrototype.Features.Bullets
 {
-    public class EnemyBulletsVfxMarker :  MonoBehaviour { }
+    public class RaycastBulletsVfxMarker :  MonoBehaviour { }
 }
