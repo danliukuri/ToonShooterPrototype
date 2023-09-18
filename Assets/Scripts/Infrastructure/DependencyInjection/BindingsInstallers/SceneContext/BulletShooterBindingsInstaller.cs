@@ -65,7 +65,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             Container
                 .BindInterfacesTo<RaycastBulletShooter>()
                 .AsTransient()
-                .WhenInjectedInto<EnemyAi>();
+                .WhenInjectedInto(typeof(PlayerShooter), typeof(EnemyAi));
         }
     }
 }
