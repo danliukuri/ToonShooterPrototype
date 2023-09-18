@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4db2cb3dfae095f47870f7a1af4479d0, type: 3}
-  m_Name: EnemyBulletsVfxFactoryConfig
+  m_Name: RaycastBulletsVfxFactoryConfig
   m_EditorClassIdentifier: 
   <Prefab>k__BackingField: {fileID: 1506287057623938073, guid: 0a01fe360427ddb4797325e234808f06, type: 3}

@@ -1,9 +1,10 @@
-﻿using UnityEngine;
+﻿using ToonShooterPrototype.Data.Dynamic;
+using UnityEngine;
 
 namespace ToonShooterPrototype.Data.Static.Configuration
 {
     [CreateAssetMenu(fileName = nameof(EnemyConfig), menuName = "Configuration/Enemy")]
-    public class EnemyConfig : ScriptableObject
+    public class EnemyConfig : ScriptableObject, IShooterData
     {
         [field: SerializeField, Min(default)] public float SightRange { get; private set; }
         [field: SerializeField, Min(default)] public float ShotAccuracy { get; private set; }

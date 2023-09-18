@@ -42,6 +42,7 @@ GameObject:
   - component: {fileID: 3996131967566901726}
   - component: {fileID: 405633423957485708}
   - component: {fileID: 7672016273050872481}
+  - component: {fileID: 8959808675437760088}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -84,8 +85,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 2.2
-  m_BaseOffset: -0.1
+  m_Height: 2.3
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &7672016273050872481
@@ -101,6 +102,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletsSpawnPoint: {fileID: 6342494093941833873}
+--- !u!136 &8959808675437760088
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5439664875841193772}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.4
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.2, z: 0}
 --- !u!1 &5700852509087093125
 GameObject:
   m_ObjectHideFlags: 0

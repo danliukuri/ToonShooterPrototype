@@ -19,6 +19,8 @@ namespace ToonShooterPrototype.Data.Dynamic
 
         public Transform Transform { get; set; }
 
+        public Vector3? ViewPoint { get; set; }
+
         public CinemachineFreeLook FreeLook { get; set; }
 
         public CinemachineFreeLook Aim { get; set; }
