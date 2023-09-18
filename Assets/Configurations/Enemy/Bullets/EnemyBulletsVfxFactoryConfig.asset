@@ -9,10 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ca7df6f1f974ceaa134dd94e6592b0e, type: 3}
-  m_Name: PlayerCameraConfig
+  m_Script: {fileID: 11500000, guid: 4db2cb3dfae095f47870f7a1af4479d0, type: 3}
+  m_Name: EnemyBulletsVfxFactoryConfig
   m_EditorClassIdentifier: 
-  <MaxViewDistance>k__BackingField: 100
-  <AttractiveObjectsTags>k__BackingField:
-  - Ground
-  - Enemy
+  <Prefab>k__BackingField: {fileID: 1506287057623938073, guid: 0a01fe360427ddb4797325e234808f06, type: 3}

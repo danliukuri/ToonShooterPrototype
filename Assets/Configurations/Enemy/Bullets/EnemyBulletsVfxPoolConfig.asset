@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ca7df6f1f974ceaa134dd94e6592b0e, type: 3}
-  m_Name: PlayerCameraConfig
+  m_Script: {fileID: 11500000, guid: ade14bb563e7bff43bbe9bfec1c11ad5, type: 3}
+  m_Name: EnemyBulletsVfxPoolConfig
   m_EditorClassIdentifier: 
-  <MaxViewDistance>k__BackingField: 100
-  <AttractiveObjectsTags>k__BackingField:
-  - Ground
-  - Enemy
+  <StartCount>k__BackingField: 10
+  <StartCapacity>k__BackingField: 20
+  <MaxSize>k__BackingField: 50
+  <ThrowErrorIfItemAlreadyInPoolWhenRelease>k__BackingField: 1

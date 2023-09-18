@@ -7,6 +7,15 @@
       "dependencies": {},
       "hash": "54b95b22c5eabd16ad342b5ba78d67996bb078a5"
     },
+    "com.unity.ai.navigation": {
+      "version": "1.1.4",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {
+        "com.unity.modules.ai": "1.0.0"
+      },
+      "url": "https://packages.unity.com"
+    },
     "com.unity.cinemachine": {
       "version": "2.9.7",
       "depth": 0,

@@ -2,6 +2,7 @@
 using ToonShooterPrototype.Data.Dynamic;
 using ToonShooterPrototype.Data.Static.Configuration;
 using ToonShooterPrototype.Data.Static.Configuration.Creation;
+using ToonShooterPrototype.Features.Enemy;
 using ToonShooterPrototype.Features.Player;
 using ToonShooterPrototype.Infrastructure.Creation.Factories;
 using UnityEngine;
@@ -78,7 +79,8 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             Container
                 .BindInterfacesAndSelfTo<PlayerData>()
                 .AsSingle()
-                .WhenInjectedInto(typeof(PlayerDataProvider), typeof(PlayerMover), typeof(PlayerRotator));
+                .WhenInjectedInto(typeof(PlayerDataProvider), typeof(PlayerMover), typeof(PlayerRotator),
+                    typeof(EnemyAi));
         }
 
         private void BindConfiguration()
