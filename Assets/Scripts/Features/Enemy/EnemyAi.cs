@@ -29,12 +29,22 @@ namespace ToonShooterPrototype.Features.Enemy
 
                 if (isPlayerInSightRange)
                     ChasePlayer(enemy);
-                if (isPlayerInShootRange && _shooter.IsAbleToShoot)
-                    _shooter.Shoot(enemy.Config, enemy.BulletsSpawnPoint.position,
-                        _player.Transform.position + enemy.Config.ShootHeight * Vector3.up);
+                if (isPlayerInShootRange)
+                {
+                    RotateTowards(enemy, _player.Transform.position);
+                    if (_shooter.IsAbleToShoot)
+                        _shooter.Shoot(enemy.Config, enemy.BulletsSpawnPoint.position,
+                            _player.Transform.position + enemy.Config.ShootHeight * Vector3.up);
+                }
             }
         }
 
         private void ChasePlayer(EnemyData enemy) => enemy.Agent.SetDestination(_player.Transform.position);
+
+        private void RotateTowards(EnemyData enemy, Vector3 point)
+        {
+            point.y = enemy.Transform.position.y;
+            enemy.Transform.LookAt(point);
+        }
     }
 }
