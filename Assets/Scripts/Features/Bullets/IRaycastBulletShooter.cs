@@ -5,7 +5,7 @@ namespace ToonShooterPrototype.Features.Bullets
 {
     public interface IRaycastBulletShooter
     {
-        public void Shoot(IShooterData data, Vector3 shootPosition, Vector3 targetPosition);
+        public void Shoot(ShootingWeaponData weapon, Vector3 targetPosition);
         bool IsAbleToShoot { get; }
     }
 }
