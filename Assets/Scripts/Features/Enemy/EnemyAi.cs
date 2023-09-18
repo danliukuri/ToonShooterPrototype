@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using ToonShooterPrototype.Data.Dynamic;
+using ToonShooterPrototype.Features.Bullets;
 using UnityEngine;
 using Zenject;
 
@@ -9,9 +10,9 @@ namespace ToonShooterPrototype.Features.Enemy
     {
         private readonly IEnumerable<EnemyData> _enemies;
         private readonly PlayerData _player;
-        private readonly IEnemyShooter _shooter;
+        private readonly IRaycastBulletShooter _shooter;
 
-        public EnemyAi(PlayerData player, IEnumerable<EnemyData> enemies, IEnemyShooter shooter)
+        public EnemyAi(PlayerData player, IEnumerable<EnemyData> enemies, IRaycastBulletShooter shooter)
         {
             _shooter = shooter;
             _player = player;
@@ -29,7 +30,8 @@ namespace ToonShooterPrototype.Features.Enemy
                 if (isPlayerInSightRange)
                     ChasePlayer(enemy);
                 if (isPlayerInShootRange && _shooter.IsAbleToShoot)
-                    _shooter.Shoot(enemy, _player.Transform.position + enemy.Config.ShootHeight * Vector3.up);
+                    _shooter.Shoot(enemy.Config, enemy.BulletsSpawnPoint.position,
+                        _player.Transform.position + enemy.Config.ShootHeight * Vector3.up);
             }
         }
 
