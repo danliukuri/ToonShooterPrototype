@@ -11,6 +11,7 @@ namespace ToonShooterPrototype.Data.Dynamic
         public EnemyConfig Config { get; }
         
         public Transform Transform { get; set; }
+        public Transform BulletsSpawnPoint { get; set; }
         public NavMeshAgent Agent { get; set; }
     }
 }

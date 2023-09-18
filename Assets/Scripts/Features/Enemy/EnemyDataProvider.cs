@@ -8,6 +8,7 @@ namespace ToonShooterPrototype.Features.Enemy
     [RequireComponent(typeof(NavMeshAgent))]
     public class EnemyDataProvider : MonoBehaviour
     {
+        [SerializeField] private Transform bulletsSpawnPoint;
         public EnemyData Data { get; private set; }
         
         [Inject]
@@ -17,6 +18,7 @@ namespace ToonShooterPrototype.Features.Enemy
         {
             Data.Agent = GetComponent<NavMeshAgent>();
             Data.Transform = GetComponent<Transform>();
+            Data.BulletsSpawnPoint = bulletsSpawnPoint;
         }
     }
 }
