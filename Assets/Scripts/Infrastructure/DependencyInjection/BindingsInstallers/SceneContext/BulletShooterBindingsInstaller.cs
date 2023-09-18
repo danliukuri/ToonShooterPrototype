@@ -46,6 +46,11 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
                 .WhenInjectedInto<ComponentPoolFactory<RaycastBulletsVfxMarker>>();
 
             Container
+                .Bind<IInitializable>()
+                .To<ComponentPoolFactory<RaycastBulletsVfxMarker>>()
+                .AsCached();
+            
+            Container
                 .Bind<IObjectPool<RaycastBulletsVfxMarker>>()
                 .To<ObjectPool<RaycastBulletsVfxMarker>>()
                 .FromFactory<ComponentPoolFactory<RaycastBulletsVfxMarker>>()

@@ -9,7 +9,7 @@ namespace ToonShooterPrototype.Infrastructure.Creation.Factories
     public class ComponentPoolFactory<TComponent> : IFactory<ObjectPool<TComponent>>, IInitializable
         where TComponent : Component
     {
-        private readonly List<ObjectPool<TComponent>> _createdPools = new();
+        private static readonly List<ObjectPool<TComponent>> _createdPools = new();
         private readonly IComponentFactory<TComponent> _componentFactory;
         private readonly IPoolConfig _poolConfig;
 
