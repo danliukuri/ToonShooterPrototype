@@ -29,10 +29,10 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
                 .BindInterfacesTo<FactoryConfig>()
                 .FromScriptableObject(bulletsVFXFactoryConfig)
                 .AsCached()
-                .WhenInjectedInto<IComponentFactory<RaycastBulletsVfxMarker>>();
+                .WhenInjectedInto<IComponentFactory<RaycastBulletsVfxPoolReturner>>();
 
             Container
-                .BindInterfacesTo<ComponentFactory<RaycastBulletsVfxMarker>>()
+                .BindInterfacesTo<DependentComponentFactory<RaycastBulletsVfxPoolReturner>>()
                 .AsSingle()
                 .WithArguments(bulletsVFXContainer);
         }
@@ -43,17 +43,17 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
                 .BindInterfacesTo<PoolConfig>()
                 .FromScriptableObject(bulletsVFXPoolConfig)
                 .AsCached()
-                .WhenInjectedInto<ComponentPoolFactory<RaycastBulletsVfxMarker>>();
+                .WhenInjectedInto<ComponentPoolFactory<RaycastBulletsVfxPoolReturner>>();
 
             Container
                 .Bind<IInitializable>()
-                .To<ComponentPoolFactory<RaycastBulletsVfxMarker>>()
+                .To<ComponentPoolFactory<RaycastBulletsVfxPoolReturner>>()
                 .AsCached();
             
             Container
-                .Bind<IObjectPool<RaycastBulletsVfxMarker>>()
-                .To<ObjectPool<RaycastBulletsVfxMarker>>()
-                .FromFactory<ComponentPoolFactory<RaycastBulletsVfxMarker>>()
+                .Bind<IObjectPool<RaycastBulletsVfxPoolReturner>>()
+                .To<ObjectPool<RaycastBulletsVfxPoolReturner>>()
+                .FromFactory<ComponentPoolFactory<RaycastBulletsVfxPoolReturner>>()
                 .AsSingle();
         }
 
