@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4db2cb3dfae095f47870f7a1af4479d0, type: 3}
   m_Name: RaycastBulletsVfxFactoryConfig
   m_EditorClassIdentifier: 
-  <Prefab>k__BackingField: {fileID: 1506287057623938073, guid: 0a01fe360427ddb4797325e234808f06, type: 3}
+  <Prefab>k__BackingField: {fileID: 4539300113863246935, guid: b1ebc7fb94017294c9636b81d788a113, type: 3}

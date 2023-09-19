@@ -13,6 +13,7 @@ namespace ToonShooterPrototype.Features.Weapon
         public void Construct(ShootingWeaponData data)
         {
             Data = data;
+            Data.GameObject = gameObject;
             Data.BulletsSpawnPoint = bulletsSpawnPoint;
         }
     }

@@ -7,6 +7,7 @@ namespace ToonShooterPrototype.Data.Dynamic
     {
         public ShootingWeaponData(ShootingWeaponConfig config) => Config = config;
 
+        public GameObject GameObject { get; set; }
         public Transform BulletsSpawnPoint { get; set; }
         public ShootingWeaponConfig Config { get; private set; }
     }

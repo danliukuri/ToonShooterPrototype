@@ -3788,6 +3788,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pistolConfig: {fileID: 11400000, guid: 9d112b2499a917f43b8b8734e7314984, type: 2}
+  smgConfig: {fileID: 11400000, guid: 65cc887589d085946af2c98b6464dd1a, type: 2}
+  sniper2Config: {fileID: 11400000, guid: d50ef8025b650324b953824958e80941, type: 2}
 --- !u!1001 &431786682
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8513,7 +8515,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 950656316}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15057115, y: 0.15830767, z: -0.02443434, w: 0.97553575}
+  m_LocalRotation: {x: 0.15057114, y: 0.15830766, z: -0.024434332, w: 0.97553575}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -11490,7 +11492,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1388537707}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.24687065, y: 0.18303369, z: -0.04754295, w: 0.9504174}
+  m_LocalRotation: {x: 0.24687065, y: 0.18303365, z: -0.047542933, w: 0.9504174}
   m_LocalPosition: {x: 0, y: 7, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14779,7 +14781,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729347517}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.30579725, y: 0.1797039, z: -0.058891177, w: 0.9331272}
+  m_LocalRotation: {x: 0.30579728, y: 0.17970389, z: -0.05889117, w: 0.9331272}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -16125,7 +16127,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1979401394}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.24687065, y: 0.18303373, z: -0.047542963, w: 0.9504174}
+  m_LocalRotation: {x: 0.24687065, y: 0.18303369, z: -0.04754295, w: 0.9504174}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

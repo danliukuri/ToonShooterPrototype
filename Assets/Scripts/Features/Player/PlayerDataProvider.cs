@@ -15,9 +15,8 @@ namespace ToonShooterPrototype.Features.Player
 
         private void Awake()
         {
-            Data.Inventory.ShootingWeapons = GetComponentsInChildren<IShootingWeaponDataProvider>()
+            Data.Inventory.ShootingWeapons = GetComponentsInChildren<IShootingWeaponDataProvider>(true)
                 .Select(weaponDataProvider => weaponDataProvider.Data).ToList();
-            Data.Inventory.CurrentWeapon = Data.Inventory.ShootingWeapons.First();
         }
     }
 }
