@@ -3,6 +3,7 @@ using ToonShooterPrototype.Data.Dynamic;
 using ToonShooterPrototype.Data.Static.Configuration;
 using ToonShooterPrototype.Data.Static.Configuration.Creation;
 using ToonShooterPrototype.Features.Enemy;
+using ToonShooterPrototype.Features.Marksman;
 using ToonShooterPrototype.Features.Player;
 using ToonShooterPrototype.Infrastructure.Creation.Factories;
 using ToonShooterPrototype.Utilities.Wrappers;
@@ -40,6 +41,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             BindShooter();
             BindWeaponSwitcher();
             
+            BindAnimationChanger();
             BindAnimationActivator();
         }
 
@@ -126,6 +128,15 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
         private void BindShooter() => Container.BindInterfacesTo<PlayerShooter>().AsSingle();
 
         private void BindViewSwitcher() => Container.BindInterfacesTo<PlayerViewSwitcher>().AsSingle();
+        
+        private void BindAnimationChanger()
+        {
+            Container
+                .BindInterfacesTo<MarksmanAnimationChanger>()
+                .AsSingle()
+                .WhenInjectedInto(typeof(PlayerConfigurator), typeof(PlayerAnimationActivator));
+        }
+
         private void BindAnimationActivator() => Container.BindInterfacesTo<PlayerAnimationActivator>().AsSingle();
     }
 }
