@@ -22,9 +22,9 @@ namespace ToonShooterPrototype.Features.Player
             _shootInputService = shootInputService;
         }
 
-        public void Dispose() => _shootInputService.ShootButtonPressed -= TryToShoot;
+        public void Dispose() => _shootInputService.ShootButtonHeldDown -= TryToShoot;
 
-        public void Initialize() => _shootInputService.ShootButtonPressed += TryToShoot;
+        public void Initialize() => _shootInputService.ShootButtonHeldDown += TryToShoot;
 
         private void TryToShoot()
         {
