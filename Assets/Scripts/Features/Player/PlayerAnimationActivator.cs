@@ -34,6 +34,12 @@ namespace ToonShooterPrototype.Features.Player
             get => _player.Animator.GetFloat(nameof(ShootingSpeed));
             set => _player.Animator.SetFloat(nameof(ShootingSpeed), value);
         }
+        
+        public bool IsGrounded
+        {
+            get => _player.Animator.GetBool(nameof(IsGrounded));
+            set => _player.Animator.SetBool(nameof(IsGrounded), value);
+        }
 
         public PlayerAnimationActivator(IMovementInputService movementInputService, PlayerData player,
             IShootInputService shootInputService)
@@ -51,6 +57,8 @@ namespace ToonShooterPrototype.Features.Player
             _movementInputService.SprintButtonPressed += StartRunning;
             _movementInputService.SprintButtonReleased += StopRunning;
             
+            _movementInputService.JumpButtonPressed += Jump;
+            
             _shootInputService.ShootButtonPressed += StartShooting;
             _shootInputService.ShootButtonReleased += StopShooting;
             _player.Inventory.CurrentWeaponIndex.ValueChanged += ChangeShootingSpeed;
@@ -63,6 +71,8 @@ namespace ToonShooterPrototype.Features.Player
             
             _movementInputService.SprintButtonPressed -= StartRunning;
             _movementInputService.SprintButtonReleased -= StopRunning;
+            
+            _movementInputService.JumpButtonPressed -= Jump;
             
             _shootInputService.ShootButtonPressed -= StartShooting;
             _shootInputService.ShootButtonReleased -= StopShooting;
@@ -78,5 +88,11 @@ namespace ToonShooterPrototype.Features.Player
         private void StopShooting() => IsShooting = false;
         private void ChangeShootingSpeed(int index) =>
             ShootingSpeed = 1f / _player.Inventory.ShootingWeapons[index].Config.ShootDelay;
+
+        private void Jump()
+        {
+            if (_player.CharacterController.isGrounded)
+                _player.Animator.SetTrigger(nameof(Jump));
+        }
     }
 }
