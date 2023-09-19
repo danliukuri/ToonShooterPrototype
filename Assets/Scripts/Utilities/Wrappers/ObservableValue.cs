@@ -6,6 +6,8 @@ namespace ToonShooterPrototype.Utilities.Wrappers
     {
         private T _value;
 
+        public ObservableValue(T value = default) => _value = value;
+
         public T Value
         {
             get => _value;
@@ -16,12 +18,17 @@ namespace ToonShooterPrototype.Utilities.Wrappers
                 {
                     _value = value;
                     ValueChanged?.Invoke(value);
+
+                    if (value.Equals(default))
+                        ValueChangedToDefault?.Invoke(value);
                 }
+
                 ValueUpdated?.Invoke(value);
             }
         }
 
         public event Action<T> ValueChanged;
         public event Action<T> ValueUpdated;
+        public event Action<T> ValueChangedToDefault;
     }
 }

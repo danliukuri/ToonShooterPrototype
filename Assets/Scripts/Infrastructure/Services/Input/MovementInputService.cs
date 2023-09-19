@@ -17,11 +17,13 @@ namespace ToonShooterPrototype.Infrastructure.Services.Input
 
         public IObservableValue<float> HorizontalAxis { get; } = new ObservableValue<float>();
         public IObservableValue<float> VerticalAxis { get; } = new ObservableValue<float>();
+        public IObservableValue<(float X, float Y)> Axles { get; } = new ObservableValue<(float X, float Y)>();
 
         public void Tick()
         {
             HorizontalAxis.Value = UnityEngine.Input.GetAxis(HorizontalAxisName);
             VerticalAxis.Value = UnityEngine.Input.GetAxis(VerticalAxisName);
+            Axles.Value = (HorizontalAxis.Value, VerticalAxis.Value);
 
             if (UnityEngine.Input.GetButtonDown(JumpButtonName))
                 JumpButtonPressed?.Invoke();

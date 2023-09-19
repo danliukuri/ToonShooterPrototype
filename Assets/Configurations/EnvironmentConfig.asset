@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: EnvironmentConfig
   m_EditorClassIdentifier: 
   <GravityForce>k__BackingField: -9.81
-  <StickingForce>k__BackingField: -0.01
+  <StickingForce>k__BackingField: -0.1

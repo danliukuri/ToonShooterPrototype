@@ -8,14 +8,16 @@ namespace ToonShooterPrototype.Features.Player
 {
     public class PlayerShooter : IInitializable, IDisposable
     {
+        private readonly PlayerData _playerData;
         private readonly PlayerInventoryData _inventory;
         private readonly PlayerCameraData _playerCamera;
         private readonly IRaycastBulletShooter _shooter;
         private readonly IShootInputService _shootInputService;
-
-        public PlayerShooter(PlayerInventoryData inventory, PlayerCameraData playerCamera,
+        
+        public PlayerShooter(PlayerData playerData, PlayerInventoryData inventory, PlayerCameraData playerCamera,
             IShootInputService shootInputService, IRaycastBulletShooter shooter)
         {
+            _playerData = playerData;
             _inventory = inventory;
             _playerCamera = playerCamera;
             _shooter = shooter;
@@ -28,7 +30,7 @@ namespace ToonShooterPrototype.Features.Player
 
         private void TryToShoot()
         {
-            if (_playerCamera.ViewPoint.HasValue && _shooter.IsAbleToShoot)
+            if (_playerCamera.ViewPoint.HasValue && _playerData.IsGrounded && _shooter.IsAbleToShoot)
                 _shooter.Shoot(_inventory.CurrentWeapon, _playerCamera.ViewPoint.Value);
         }
     }
