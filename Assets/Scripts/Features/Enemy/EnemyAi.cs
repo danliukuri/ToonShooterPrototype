@@ -23,18 +23,19 @@ namespace ToonShooterPrototype.Features.Enemy
         {
             foreach (EnemyData enemy in _enemies)
             {
-                float distanceToPlayer = Vector3.Distance(enemy.Transform.position, _player.Transform.position);
-                bool isPlayerInSightRange = distanceToPlayer <= enemy.Config.SightRange;
-                bool isPlayerInShootRange = distanceToPlayer <= enemy.Weapon.Config.ShootRange;
+                Transform target = _player.Transform;
+                float distanceToTarget = Vector3.Distance(enemy.Transform.position, target.position);
+                bool isTargetInSightRange = distanceToTarget <= enemy.Config.SightRange;
+                enemy.HasShootTarget = distanceToTarget <= enemy.Weapon.Config.ShootRange;
 
-                if (isPlayerInSightRange)
+                if (isTargetInSightRange)
                     ChasePlayer(enemy);
-                if (isPlayerInShootRange)
+                if (enemy.HasShootTarget)
                 {
-                    RotateTowards(enemy, _player.Transform.position);
+                    RotateTowards(enemy, target.position);
                     if (_shooter.IsAbleToShoot)
                         _shooter.Shoot(enemy.Weapon,
-                            _player.Transform.position + enemy.Config.ShootHeight * Vector3.up);
+                            target.position + enemy.Config.ShootHeight * Vector3.up);
                 }
             }
         }

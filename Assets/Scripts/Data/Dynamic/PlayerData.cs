@@ -16,7 +16,6 @@ namespace ToonShooterPrototype.Data.Dynamic
 
         public Transform Transform { get; set; }
         public CharacterController CharacterController { get; set; }
-        public Animator Animator { get; set; }
         
         public PlayerInventoryData Inventory { get; }
         public PlayerConfig Config { get; }

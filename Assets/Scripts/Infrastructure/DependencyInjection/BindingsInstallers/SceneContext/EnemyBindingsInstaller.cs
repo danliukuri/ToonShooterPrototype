@@ -2,6 +2,7 @@
 using ToonShooterPrototype.Data.Dynamic;
 using ToonShooterPrototype.Data.Static.Configuration;
 using ToonShooterPrototype.Features.Enemy;
+using ToonShooterPrototype.Features.Marksman;
 using ToonShooterPrototype.Utilities.Wrappers;
 using UnityEngine;
 using Zenject;
@@ -19,6 +20,8 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             BindData();
 
             BindAi();
+            BindAnimationChanger();
+            BindAnimationActivator();
         }
 
         private void BindConfiguration()
@@ -48,6 +51,22 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
         {
             Container
                 .BindInterfacesAndSelfTo<EnemyAi>()
+                .AsSingle()
+                .WithArguments(enemies.Select(enemy => enemy.Data));
+        }
+
+        private void BindAnimationChanger()
+        {
+            Container
+                .BindInterfacesAndSelfTo<MarksmanAnimationChanger>()
+                .AsCached()
+                .WhenInjectedInto<EnemyData>();
+        }
+
+        private void BindAnimationActivator()
+        {
+            Container
+                .BindInterfacesTo<EnemyAnimationActivator>()
                 .AsSingle()
                 .WithArguments(enemies.Select(enemy => enemy.Data));
         }
