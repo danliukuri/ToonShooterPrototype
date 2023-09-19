@@ -40,6 +40,7 @@ namespace ToonShooterPrototype.Features.Enemy
                 }
 
                 enemy.AnimationChanger.IsWalking = enemy.Agent.hasPath;
+                enemy.AnimationChanger.IsShooting = isPlayerInShootRange;
             }
         }
 
