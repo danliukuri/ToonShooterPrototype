@@ -5,6 +5,7 @@ using ToonShooterPrototype.Data.Static.Configuration.Creation;
 using ToonShooterPrototype.Features.Enemy;
 using ToonShooterPrototype.Features.Player;
 using ToonShooterPrototype.Infrastructure.Creation.Factories;
+using ToonShooterPrototype.Utilities.Wrappers;
 using UnityEngine;
 using UnityEngine.Pool;
 using Zenject;
@@ -31,15 +32,13 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
 
             BindData();
             BindInventoryData();
-            BindConfiguration();
+            BindCameraData();
 
             BindMover();
             PlayerRotator();
+            BindViewSwitcher();
             BindShooter();
             BindWeaponSwitcher();
-
-            BindCameraData();
-            BindViewSwitcher();
         }
 
         private void BindConfigurator()
@@ -80,8 +79,15 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
         private void BindData()
         {
             Container
+                .BindInterfacesTo<ObservableValue<int>>()
+                .AsCached()
+                .WithArguments(playerConfig.Health)
+                .WhenInjectedInto<PlayerData>();
+
+            Container
                 .BindInterfacesAndSelfTo<PlayerData>()
                 .AsSingle()
+                .WithArguments(playerConfig)
                 .WhenInjectedInto(typeof(PlayerDataProvider), typeof(PlayerMover), typeof(PlayerRotator),
                     typeof(EnemyAi), typeof(PlayerShooter));
         }
@@ -91,25 +97,8 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             Container
                 .BindInterfacesAndSelfTo<PlayerInventoryData>()
                 .AsSingle()
-                .WhenInjectedInto(typeof(PlayerConfigurator), typeof(PlayerWeaponSwitcher), typeof(PlayerShooter));
+                .WhenInjectedInto(typeof(PlayerData), typeof(PlayerWeaponSwitcher), typeof(PlayerShooter));
         }
-
-        private void BindConfiguration()
-        {
-            Container
-                .BindInterfacesAndSelfTo<PlayerConfig>()
-                .FromScriptableObject(playerConfig)
-                .AsSingle()
-                .WhenInjectedInto<PlayerConfigurator>();
-        }
-
-        private void BindMover() => Container.BindInterfacesTo<PlayerMover>().AsSingle();
-
-        private void PlayerRotator() => Container.BindInterfacesTo<PlayerRotator>().AsSingle();
-
-        private void BindShooter() => Container.BindInterfacesTo<PlayerShooter>().AsSingle();
-
-        private void BindWeaponSwitcher() => Container.BindInterfacesTo<PlayerWeaponSwitcher>().AsSingle();
 
         private void BindCameraData()
         {
@@ -120,6 +109,14 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
                 .WhenInjectedInto(typeof(PlayerConfigurator), typeof(PlayerViewSwitcher), typeof(PlayerRotator),
                     typeof(PlayerShooter));
         }
+
+        private void BindMover() => Container.BindInterfacesTo<PlayerMover>().AsSingle();
+
+        private void PlayerRotator() => Container.BindInterfacesTo<PlayerRotator>().AsSingle();
+
+        private void BindWeaponSwitcher() => Container.BindInterfacesTo<PlayerWeaponSwitcher>().AsSingle();
+
+        private void BindShooter() => Container.BindInterfacesTo<PlayerShooter>().AsSingle();
 
         private void BindViewSwitcher() => Container.BindInterfacesTo<PlayerViewSwitcher>().AsSingle();
     }
