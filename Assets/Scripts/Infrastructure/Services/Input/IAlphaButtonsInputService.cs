@@ -2,8 +2,8 @@
 
 namespace ToonShooterPrototype.Infrastructure.Services.Input
 {
-    public interface IShootInputService
+    public interface IAlphaButtonsInputService
     {
-        event Action ShootButtonHeldDown;
+        event Action<int> AlphaButtonPressed;
     }
 }

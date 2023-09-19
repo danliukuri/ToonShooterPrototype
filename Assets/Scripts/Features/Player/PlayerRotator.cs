@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using ToonShooterPrototype.Data.Dynamic;
+﻿using ToonShooterPrototype.Data.Dynamic;
 using UnityEngine;
 using Zenject;
 

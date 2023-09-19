@@ -9,7 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4db2cb3dfae095f47870f7a1af4479d0, type: 3}
-  m_Name: RaycastBulletsVfxFactoryConfig
+  m_Script: {fileID: 11500000, guid: 649bc2894be84918af6729a95d4145e0, type: 3}
+  m_Name: SmgShootingWeaponConfig
   m_EditorClassIdentifier: 
-  <Prefab>k__BackingField: {fileID: 4539300113863246935, guid: b1ebc7fb94017294c9636b81d788a113, type: 3}
+  <ShotAccuracy>k__BackingField: 0.3
+  <ShootRange>k__BackingField: 20
+  <ShootDelay>k__BackingField: 0.1

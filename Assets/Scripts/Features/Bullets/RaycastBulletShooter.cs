@@ -17,17 +17,17 @@ namespace ToonShooterPrototype.Features.Bullets
             _coroutineRunner = coroutineRunner;
         }
 
-        public void Shoot(IShooterData data, Vector3 shootPosition, Vector3 targetPosition)
+        public void Shoot(ShootingWeaponData weapon, Vector3 targetPosition)
         {
-            targetPosition += Random.insideUnitSphere * data.ShotAccuracy;
+            targetPosition += Random.insideUnitSphere * weapon.Config.ShotAccuracy;
+            Vector3 shootPosition = weapon.BulletsSpawnPoint.position;
             var ray = new Ray(shootPosition, targetPosition - shootPosition);
 
-            Debug.DrawRay(shootPosition, targetPosition - shootPosition, Color.red, 1f);
-            if (Physics.Raycast(ray, out RaycastHit hit, data.ShootRange))
+            if (Physics.Raycast(ray, out RaycastHit hit, weapon.Config.ShootRange))
                 _bulletVfxSpawner.Spawn(hit);
 
             IsAbleToShoot = false;
-            _coroutineRunner.RunInvoke(() => IsAbleToShoot = true, data.ShootDelay);
+            _coroutineRunner.RunInvoke(() => IsAbleToShoot = true, weapon.Config.ShootDelay);
         }
     }
 }

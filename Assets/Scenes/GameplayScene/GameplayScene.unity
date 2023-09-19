@@ -3654,6 +3654,7 @@ GameObject:
   - component: {fileID: 424405335}
   - component: {fileID: 424405336}
   - component: {fileID: 424405337}
+  - component: {fileID: 424405338}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -3679,6 +3680,7 @@ MonoBehaviour:
   - {fileID: 424405335}
   - {fileID: 424405336}
   - {fileID: 424405337}
+  - {fileID: 424405338}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -3773,6 +3775,21 @@ MonoBehaviour:
   bulletsVFXContainer: {fileID: 436238415}
   bulletsVFXFactoryConfig: {fileID: 11400000, guid: dbff1a4ef665aca419d391fe250c7373, type: 2}
   bulletsVFXPoolConfig: {fileID: 11400000, guid: 6d9ea14a3fa9b804c9e2e47351060942, type: 2}
+--- !u!114 &424405338
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 424405331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c2f3c7182194eb8bb6c1e859bb36c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pistolConfig: {fileID: 11400000, guid: 9d112b2499a917f43b8b8734e7314984, type: 2}
+  smgConfig: {fileID: 11400000, guid: 65cc887589d085946af2c98b6464dd1a, type: 2}
+  sniper2Config: {fileID: 11400000, guid: d50ef8025b650324b953824958e80941, type: 2}
 --- !u!1001 &431786682
 PrefabInstance:
   m_ObjectHideFlags: 0

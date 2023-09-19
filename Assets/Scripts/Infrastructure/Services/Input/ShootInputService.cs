@@ -7,12 +7,12 @@ namespace ToonShooterPrototype.Infrastructure.Services.Input
     {
         private const string ShootButtonName = "Fire1";
         
-        public event Action ShootButtonPressed;
+        public event Action ShootButtonHeldDown;
         
         public void Tick()
         {
-            if (UnityEngine.Input.GetButtonDown(ShootButtonName))
-                ShootButtonPressed?.Invoke();
+            if (UnityEngine.Input.GetButton(ShootButtonName))
+                ShootButtonHeldDown?.Invoke();
         }
     }
 }

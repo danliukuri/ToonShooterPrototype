@@ -6,8 +6,8 @@ namespace ToonShooterPrototype.Data.Dynamic
     public class PlayerData : IGroundable
     {
         public Transform Transform { get; set; }
-        public Transform BulletsSpawnPoint { get; set; }
         public CharacterController CharacterController { get; set; }
+        public PlayerInventoryData Inventory { get; set; }
 
         public PlayerConfig Config { get; set; }
 

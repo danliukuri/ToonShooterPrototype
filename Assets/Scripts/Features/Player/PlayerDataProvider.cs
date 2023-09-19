@@ -1,4 +1,6 @@
-﻿using ToonShooterPrototype.Data.Dynamic;
+﻿using System.Linq;
+using ToonShooterPrototype.Data.Dynamic;
+using ToonShooterPrototype.Features.Weapon;
 using UnityEngine;
 using Zenject;
 
@@ -6,14 +8,15 @@ namespace ToonShooterPrototype.Features.Player
 {
     public class PlayerDataProvider : MonoBehaviour
     {
-        [SerializeField] private Transform bulletsSpawnPoint;
         public PlayerData Data { get; private set; }
 
         [Inject]
-        public void Construct(PlayerData data)
+        public void Construct(PlayerData data) => Data = data;
+
+        private void Awake()
         {
-            Data = data;
-            Data.BulletsSpawnPoint = bulletsSpawnPoint;
+            Data.Inventory.ShootingWeapons = GetComponentsInChildren<IShootingWeaponDataProvider>(true)
+                .Select(weaponDataProvider => weaponDataProvider.Data).ToList();
         }
     }
 }

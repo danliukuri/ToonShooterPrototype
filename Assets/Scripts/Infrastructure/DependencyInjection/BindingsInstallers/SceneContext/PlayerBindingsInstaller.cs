@@ -30,11 +30,13 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             BindObjectPool();
 
             BindData();
+            BindInventoryData();
             BindConfiguration();
 
             BindMover();
             PlayerRotator();
             BindShooter();
+            BindWeaponSwitcher();
 
             BindCameraData();
             BindViewSwitcher();
@@ -84,6 +86,14 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
                     typeof(EnemyAi), typeof(PlayerShooter));
         }
 
+        private void BindInventoryData()
+        {
+            Container
+                .BindInterfacesAndSelfTo<PlayerInventoryData>()
+                .AsSingle()
+                .WhenInjectedInto(typeof(PlayerConfigurator), typeof(PlayerWeaponSwitcher), typeof(PlayerShooter));
+        }
+
         private void BindConfiguration()
         {
             Container
@@ -98,6 +108,8 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
         private void PlayerRotator() => Container.BindInterfacesTo<PlayerRotator>().AsSingle();
 
         private void BindShooter() => Container.BindInterfacesTo<PlayerShooter>().AsSingle();
+
+        private void BindWeaponSwitcher() => Container.BindInterfacesTo<PlayerWeaponSwitcher>().AsSingle();
 
         private void BindCameraData()
         {

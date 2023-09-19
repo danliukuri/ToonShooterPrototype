@@ -25,7 +25,7 @@ namespace ToonShooterPrototype.Features.Enemy
             {
                 float distanceToPlayer = Vector3.Distance(enemy.Transform.position, _player.Transform.position);
                 bool isPlayerInSightRange = distanceToPlayer <= enemy.Config.SightRange;
-                bool isPlayerInShootRange = distanceToPlayer <= enemy.Config.ShootRange;
+                bool isPlayerInShootRange = distanceToPlayer <= enemy.Weapon.Config.ShootRange;
 
                 if (isPlayerInSightRange)
                     ChasePlayer(enemy);
@@ -33,7 +33,7 @@ namespace ToonShooterPrototype.Features.Enemy
                 {
                     RotateTowards(enemy, _player.Transform.position);
                     if (_shooter.IsAbleToShoot)
-                        _shooter.Shoot(enemy.Config, enemy.BulletsSpawnPoint.position,
+                        _shooter.Shoot(enemy.Weapon,
                             _player.Transform.position + enemy.Config.ShootHeight * Vector3.up);
                 }
             }
