@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 
 namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstallers
@@ -9,5 +10,8 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
 
         public static bool HasComponent<T>(this InjectContext context) =>
             context.ObjectInstance is Component component && component.TryGetComponent(out T _);
+
+        public static bool HasComponent(this InjectContext context, Type type) =>
+            context.ObjectInstance is Component component && component.TryGetComponent(type, out Component _);
     }
 }

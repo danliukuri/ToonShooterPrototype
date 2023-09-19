@@ -10,6 +10,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             BindMovementInputService();
             BindAimInputService();
             BindShootInputService();
+            BindAlfaButtonsInputService();
         }
 
         private void BindMovementInputService() => Container.BindInterfacesTo<MovementInputService>().AsSingle();
@@ -17,5 +18,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
         private void BindAimInputService() => Container.BindInterfacesTo<AimInputService>().AsSingle();
 
         private void BindShootInputService() => Container.BindInterfacesTo<ShootInputService>().AsSingle();
+
+        private void BindAlfaButtonsInputService() => Container.BindInterfacesTo<AlphaButtonsInputService>().AsSingle();
     }
 }
