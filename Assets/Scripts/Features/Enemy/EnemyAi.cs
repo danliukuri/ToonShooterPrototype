@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using ToonShooterPrototype.Data.Dynamic;
 using ToonShooterPrototype.Features.Bullets;
+using ToonShooterPrototype.Features.Marksman;
 using UnityEngine;
 using Zenject;
 
@@ -12,7 +13,8 @@ namespace ToonShooterPrototype.Features.Enemy
         private readonly PlayerData _player;
         private readonly IRaycastBulletShooter _shooter;
 
-        public EnemyAi(PlayerData player, IEnumerable<EnemyData> enemies, IRaycastBulletShooter shooter)
+        public EnemyAi(PlayerData player, IEnumerable<EnemyData> enemies,
+            IRaycastBulletShooter shooter)
         {
             _shooter = shooter;
             _player = player;
@@ -36,6 +38,8 @@ namespace ToonShooterPrototype.Features.Enemy
                         _shooter.Shoot(enemy.Weapon,
                             _player.Transform.position + enemy.Config.ShootHeight * Vector3.up);
                 }
+
+                enemy.AnimationChanger.IsWalking = enemy.Agent.hasPath;
             }
         }
 

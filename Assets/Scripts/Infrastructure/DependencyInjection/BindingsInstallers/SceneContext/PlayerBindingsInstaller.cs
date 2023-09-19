@@ -133,7 +133,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
         {
             Container
                 .BindInterfacesTo<MarksmanAnimationChanger>()
-                .AsSingle()
+                .AsCached()
                 .WhenInjectedInto(typeof(PlayerConfigurator), typeof(PlayerAnimationActivator));
         }
 
