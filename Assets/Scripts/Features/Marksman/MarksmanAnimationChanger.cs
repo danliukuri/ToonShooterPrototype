@@ -32,6 +32,6 @@ namespace ToonShooterPrototype.Features.Marksman
 
         public void Jump() => Animator.SetTrigger(nameof(Jump));
 
-        public void Death() => Animator.SetTrigger(nameof(Death));
+        public void Death(int health = default) => Animator.SetTrigger(nameof(Death));
     }
 }

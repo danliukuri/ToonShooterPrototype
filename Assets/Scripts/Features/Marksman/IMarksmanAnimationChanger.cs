@@ -10,6 +10,6 @@ namespace ToonShooterPrototype.Features.Marksman
         bool IsShooting { get; set; }
         float ShootingSpeed { get; set; }
         void Jump();
-        void Death();
+        void Death(int health = default);
     }
 }
