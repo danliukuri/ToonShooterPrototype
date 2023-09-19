@@ -24,7 +24,11 @@ namespace ToonShooterPrototype.Features.Bullets
             var ray = new Ray(shootPosition, targetPosition - shootPosition);
 
             if (Physics.Raycast(ray, out RaycastHit hit, weapon.Config.ShootRange))
+            {
                 _bulletVfxSpawner.Spawn(hit);
+                if (hit.collider.TryGetComponent(out IDamageableProvider damageableProvider))
+                    damageableProvider.Damageable.Health.Value -= weapon.Config.ShootDamage;
+            }
 
             IsAbleToShoot = false;
             _coroutineRunner.RunInvoke(() => IsAbleToShoot = true, weapon.Config.ShootDelay);

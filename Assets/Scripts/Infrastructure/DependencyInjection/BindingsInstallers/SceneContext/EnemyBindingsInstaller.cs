@@ -2,6 +2,7 @@
 using ToonShooterPrototype.Data.Dynamic;
 using ToonShooterPrototype.Data.Static.Configuration;
 using ToonShooterPrototype.Features.Enemy;
+using ToonShooterPrototype.Utilities.Wrappers;
 using UnityEngine;
 using Zenject;
 
@@ -31,6 +32,12 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
 
         private void BindData()
         {
+            Container
+                .BindInterfacesTo<ObservableValue<int>>()
+                .AsCached()
+                .WithArguments(enemyConfig.Health)
+                .WhenInjectedInto<EnemyData>();
+
             Container
                 .BindInterfacesAndSelfTo<EnemyData>()
                 .AsTransient()

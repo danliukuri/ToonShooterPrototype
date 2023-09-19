@@ -7,8 +7,9 @@ using Zenject;
 namespace ToonShooterPrototype.Features.Enemy
 {
     [RequireComponent(typeof(NavMeshAgent)), RequireComponent(typeof(Transform))]
-    public class EnemyDataProvider : MonoBehaviour
+    public class EnemyDataProvider : MonoBehaviour, IDamageableProvider
     {
+        public IDamageable Damageable => Data;
         public EnemyData Data { get; private set; }
 
         [Inject]

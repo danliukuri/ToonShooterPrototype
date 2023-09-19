@@ -6,8 +6,9 @@ using Zenject;
 
 namespace ToonShooterPrototype.Features.Player
 {
-    public class PlayerDataProvider : MonoBehaviour
+    public class PlayerDataProvider : MonoBehaviour, IDamageableProvider
     {
+        public IDamageable Damageable => Data;
         public PlayerData Data { get; private set; }
 
         [Inject]

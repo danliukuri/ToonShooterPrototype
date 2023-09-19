@@ -8,5 +8,7 @@ namespace ToonShooterPrototype.Data.Static.Configuration
         [field: SerializeField, Min(default)] public float MoveSpeed { get; private set; }
         [field: SerializeField, Min(default)] public float SprintSpeed { get; private set; }
         [field: SerializeField, Min(default)] public float JumpPower { get; private set; }
+
+        [field: SerializeField, Min(default)] public int Health { get; private set; }
     }
 }
