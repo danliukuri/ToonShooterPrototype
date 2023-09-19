@@ -62,6 +62,8 @@ namespace ToonShooterPrototype.Features.Player
             _shootInputService.ShootButtonPressed += StartShooting;
             _shootInputService.ShootButtonReleased += StopShooting;
             _player.Inventory.CurrentWeaponIndex.ValueChanged += ChangeShootingSpeed;
+            
+            _player.Health.ValueChangedToDefault += Death;
         }
 
         public void Dispose()
@@ -76,6 +78,8 @@ namespace ToonShooterPrototype.Features.Player
             
             _shootInputService.ShootButtonPressed -= StartShooting;
             _shootInputService.ShootButtonReleased -= StopShooting;
+            
+            _player.Health.ValueChangedToDefault -= Death;
         }
 
         private void StartWalking((float X, float Y) axes) => IsWalking = true;
@@ -94,5 +98,7 @@ namespace ToonShooterPrototype.Features.Player
             if (_player.CharacterController.isGrounded)
                 _player.Animator.SetTrigger(nameof(Jump));
         }
+        
+        private void Death(int health) => _player.Animator.SetTrigger(nameof(Death));
     }
 }
