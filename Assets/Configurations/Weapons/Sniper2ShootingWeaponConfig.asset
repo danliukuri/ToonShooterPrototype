@@ -15,3 +15,4 @@ MonoBehaviour:
   <ShotAccuracy>k__BackingField: 0
   <ShootRange>k__BackingField: 50
   <ShootDelay>k__BackingField: 1
+  <ShootDamage>k__BackingField: 30
