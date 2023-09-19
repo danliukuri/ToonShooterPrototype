@@ -1,6 +1,5 @@
 ﻿using System;
 using ToonShooterPrototype.Utilities.Wrappers;
-using UnityEngine;
 using Zenject;
 
 namespace ToonShooterPrototype.Infrastructure.Services.Input

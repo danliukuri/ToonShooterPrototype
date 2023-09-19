@@ -97,6 +97,11 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
         private void BindInventoryData()
         {
             Container
+                .BindInterfacesTo<ObservableValue<int>>()
+                .AsCached()
+                .WhenInjectedInto<PlayerInventoryData>();
+
+            Container
                 .BindInterfacesAndSelfTo<PlayerInventoryData>()
                 .AsSingle()
                 .WhenInjectedInto(typeof(PlayerData), typeof(PlayerWeaponSwitcher), typeof(PlayerShooter));

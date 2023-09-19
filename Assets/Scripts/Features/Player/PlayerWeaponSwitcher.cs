@@ -23,10 +23,11 @@ namespace ToonShooterPrototype.Features.Player
 
         private void SwitchWeapon(int buttonIndex)
         {
-            if (_inventory.ShootingWeapons.IsInIndexRange(buttonIndex) && _inventory.CurrentWeaponIndex != buttonIndex)
+            if (_inventory.ShootingWeapons.IsInIndexRange(buttonIndex) &&
+                _inventory.CurrentWeaponIndex.Value != buttonIndex)
             {
                 _inventory.CurrentWeapon.GameObject.SetActive(false);
-                _inventory.CurrentWeaponIndex = buttonIndex;
+                _inventory.CurrentWeaponIndex.Value = buttonIndex;
                 _inventory.CurrentWeapon.GameObject.SetActive(true);
             }
         }
