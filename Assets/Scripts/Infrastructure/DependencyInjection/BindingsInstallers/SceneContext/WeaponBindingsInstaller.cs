@@ -1,4 +1,6 @@
-﻿using ToonShooterPrototype.Data.Dynamic;
+﻿using System;
+using System.Collections.Generic;
+using ToonShooterPrototype.Data.Dynamic;
 using ToonShooterPrototype.Data.Static.Configuration;
 using ToonShooterPrototype.Features.Weapon;
 using UnityEngine;
@@ -9,16 +11,28 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
     public class WeaponBindingsInstaller : MonoInstaller
     {
         [SerializeField] private ShootingWeaponConfig pistolConfig;
+        [SerializeField] private ShootingWeaponConfig smgConfig;
+        [SerializeField] private ShootingWeaponConfig sniper2Config;
 
-        public override void InstallBindings() => BindPistolData();
+        public override void InstallBindings()
+        {
+            List<(ShootingWeaponConfig Config, Type Marker)> shootingWeapons = new()
+            {
+                (pistolConfig,  typeof(PistolMarker) ),
+                (smgConfig,     typeof(SmgMarker)    ),
+                (sniper2Config, typeof(Sniper2Marker))
+            };
 
-        private void BindPistolData()
+            shootingWeapons.ForEach(BindShootingWeaponData);
+        }
+
+        private void BindShootingWeaponData((ShootingWeaponConfig Config, Type Marker) weapon)
         {
             Container
                 .BindInterfacesAndSelfTo<ShootingWeaponData>()
-                .AsSingle()
-                .WithArguments(pistolConfig)
-                .When(ctx => ctx.WhenInjectedInto<ShootingWeaponDataProvider>() && ctx.HasComponent<PistolMarker>());
+                .AsTransient()
+                .WithArguments(weapon.Config)
+                .When(ctx => ctx.WhenInjectedInto<ShootingWeaponDataProvider>() && ctx.HasComponent(weapon.Marker));
         }
     }
 }
