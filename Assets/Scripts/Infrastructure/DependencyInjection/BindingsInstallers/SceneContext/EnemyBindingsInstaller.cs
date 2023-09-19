@@ -21,6 +21,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
 
             BindAi();
             BindAnimationChanger();
+            BindAnimationActivator();
         }
 
         private void BindConfiguration()
@@ -59,7 +60,15 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             Container
                 .BindInterfacesAndSelfTo<MarksmanAnimationChanger>()
                 .AsCached()
-                .WhenInjectedInto(typeof(EnemyData), typeof(EnemyAi));
+                .WhenInjectedInto<EnemyData>();
+        }
+
+        private void BindAnimationActivator()
+        {
+            Container
+                .BindInterfacesTo<EnemyAnimationActivator>()
+                .AsSingle()
+                .WithArguments(enemies.Select(enemy => enemy.Data));
         }
     }
 }

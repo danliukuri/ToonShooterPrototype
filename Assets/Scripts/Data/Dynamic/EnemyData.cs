@@ -23,6 +23,8 @@ namespace ToonShooterPrototype.Data.Dynamic
 
         public IMarksmanAnimationChanger AnimationChanger { get; set; }
 
+        public bool HasShootTarget { get; set; }
+
         public IObservableValue<int> Health { get; set; }
     }
 }
