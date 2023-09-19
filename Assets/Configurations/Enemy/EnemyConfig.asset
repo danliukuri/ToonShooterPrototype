@@ -13,7 +13,5 @@ MonoBehaviour:
   m_Name: EnemyConfig
   m_EditorClassIdentifier: 
   <SightRange>k__BackingField: 15
-  <ShotAccuracy>k__BackingField: 1
-  <ShootRange>k__BackingField: 30
-  <ShootDelay>k__BackingField: 1
   <ShootHeight>k__BackingField: 1.75
+  <Health>k__BackingField: 100

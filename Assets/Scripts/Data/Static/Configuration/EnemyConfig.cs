@@ -7,5 +7,7 @@ namespace ToonShooterPrototype.Data.Static.Configuration
     {
         [field: SerializeField, Min(default)] public float SightRange { get; private set; }
         [field: SerializeField, Min(default)] public float ShootHeight { get; private set; }
+
+        [field: SerializeField, Min(default)] public int Health { get; private set; }
     }
 }
