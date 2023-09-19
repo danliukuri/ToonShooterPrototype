@@ -91,7 +91,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
                 .AsSingle()
                 .WithArguments(playerConfig)
                 .WhenInjectedInto(typeof(PlayerDataProvider), typeof(PlayerMover), typeof(PlayerRotator),
-                    typeof(EnemyAi), typeof(PlayerShooter), typeof(PlayerAnimationActivator));
+                    typeof(EnemyAi), typeof(PlayerShooter), typeof(PlayerAnimationActivator), typeof(PlayerShooter));
         }
 
         private void BindInventoryData()
