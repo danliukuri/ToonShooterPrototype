@@ -39,6 +39,8 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             BindViewSwitcher();
             BindShooter();
             BindWeaponSwitcher();
+            
+            BindAnimationActivator();
         }
 
         private void BindConfigurator()
@@ -89,7 +91,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
                 .AsSingle()
                 .WithArguments(playerConfig)
                 .WhenInjectedInto(typeof(PlayerDataProvider), typeof(PlayerMover), typeof(PlayerRotator),
-                    typeof(EnemyAi), typeof(PlayerShooter));
+                    typeof(EnemyAi), typeof(PlayerShooter), typeof(PlayerAnimationActivator));
         }
 
         private void BindInventoryData()
@@ -119,6 +121,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
         private void BindShooter() => Container.BindInterfacesTo<PlayerShooter>().AsSingle();
 
         private void BindViewSwitcher() => Container.BindInterfacesTo<PlayerViewSwitcher>().AsSingle();
+        private void BindAnimationActivator() => Container.BindInterfacesTo<PlayerAnimationActivator>().AsSingle();
     }
 }
 

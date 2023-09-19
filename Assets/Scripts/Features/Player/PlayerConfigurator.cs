@@ -1,7 +1,5 @@
 ﻿using ToonShooterPrototype.Data.Dynamic;
-using ToonShooterPrototype.Data.Static.Configuration;
 using ToonShooterPrototype.Infrastructure.Creation.Services;
-using ToonShooterPrototype.Utilities.Wrappers;
 using UnityEngine;
 
 namespace ToonShooterPrototype.Features.Player
@@ -22,8 +20,9 @@ namespace ToonShooterPrototype.Features.Player
             PlayerData data = component.Data;
 
             data.CharacterController = component.GetComponent<CharacterController>();
-
+            data.Animator = component.GetComponentInChildren<Animator>();
             data.Transform = component.GetComponent<Transform>();
+
             data.Transform.position = _spawnPoint.position;
 
             ConfigureCamera(data.Transform);
