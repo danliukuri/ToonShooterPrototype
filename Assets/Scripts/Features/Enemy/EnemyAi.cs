@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using ToonShooterPrototype.Data.Dynamic;
+﻿using ToonShooterPrototype.Data.Dynamic;
 using ToonShooterPrototype.Features.Bullets;
 using UnityEngine;
 using Zenject;
@@ -8,35 +7,34 @@ namespace ToonShooterPrototype.Features.Enemy
 {
     public class EnemyAi : ITickable
     {
-        private readonly IEnumerable<EnemyData> _enemies;
+        private readonly EnemyDataProvider _enemyProvider;
         private readonly PlayerData _player;
         private readonly IRaycastBulletShooter _shooter;
 
-        public EnemyAi(PlayerData player, IEnumerable<EnemyData> enemies, IRaycastBulletShooter shooter)
+        public EnemyAi(PlayerData player, EnemyDataProvider enemyProvider, IRaycastBulletShooter shooter)
         {
+            _enemyProvider = enemyProvider;
             _shooter = shooter;
             _player = player;
-            _enemies = enemies;
         }
 
         public void Tick()
         {
-            foreach (EnemyData enemy in _enemies)
-            {
-                Transform target = _player.Transform;
-                float distanceToTarget = Vector3.Distance(enemy.Transform.position, target.position);
-                bool isTargetInSightRange = distanceToTarget <= enemy.Config.SightRange;
-                enemy.HasShootTarget = distanceToTarget <= enemy.Weapon.Config.ShootRange;
+            EnemyData enemy = _enemyProvider.Data;
+            Transform target = _player.Transform;
 
-                if (isTargetInSightRange)
-                    ChasePlayer(enemy);
-                if (enemy.HasShootTarget)
-                {
-                    RotateTowards(enemy, target.position);
-                    if (_shooter.IsAbleToShoot)
-                        _shooter.Shoot(enemy.Weapon,
-                            target.position + enemy.Config.ShootHeight * Vector3.up);
-                }
+            float distanceToTarget = Vector3.Distance(enemy.Transform.position, target.position);
+            bool isTargetInSightRange = distanceToTarget <= enemy.Config.SightRange;
+            enemy.HasShootTarget = distanceToTarget <= enemy.Weapon.Config.ShootRange;
+
+            if (isTargetInSightRange)
+                ChasePlayer(enemy);
+            if (enemy.HasShootTarget)
+            {
+                RotateTowards(enemy, target.position);
+                if (_shooter.IsAbleToShoot)
+                    _shooter.Shoot(enemy.Weapon,
+                        target.position + enemy.Config.ShootHeight * Vector3.up);
             }
         }
 

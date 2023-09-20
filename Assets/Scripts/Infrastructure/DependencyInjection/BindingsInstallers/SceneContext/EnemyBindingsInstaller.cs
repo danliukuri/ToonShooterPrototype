@@ -19,9 +19,13 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             BindConfiguration();
             BindData();
 
-            BindAi();
             BindAnimationChanger();
-            BindAnimationActivator();
+
+            foreach (EnemyDataProvider enemy in enemies)
+            {
+                BindAi(enemy);
+                BindAnimationActivator(enemy);
+            }
         }
 
         private void BindConfiguration()
@@ -37,7 +41,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
         {
             Container
                 .BindInterfacesTo<ObservableValue<int>>()
-                .AsCached()
+                .AsTransient()
                 .WithArguments(enemyConfig.Health)
                 .WhenInjectedInto<EnemyData>();
 
@@ -47,28 +51,28 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
                 .WhenInjectedInto<EnemyDataProvider>();
         }
 
-        private void BindAi()
-        {
-            Container
-                .BindInterfacesAndSelfTo<EnemyAi>()
-                .AsSingle()
-                .WithArguments(enemies.Select(enemy => enemy.Data));
-        }
-
         private void BindAnimationChanger()
         {
             Container
                 .BindInterfacesAndSelfTo<MarksmanAnimationChanger>()
-                .AsCached()
+                .AsTransient()
                 .WhenInjectedInto<EnemyData>();
         }
 
-        private void BindAnimationActivator()
+        private void BindAi(EnemyDataProvider enemy)
+        {
+            Container
+                .BindInterfacesAndSelfTo<EnemyAi>()
+                .AsCached()
+                .WithArguments(enemy);
+        }
+
+        private void BindAnimationActivator(EnemyDataProvider enemy)
         {
             Container
                 .BindInterfacesTo<EnemyAnimationActivator>()
-                .AsSingle()
-                .WithArguments(enemies.Select(enemy => enemy.Data));
+                .AsCached()
+                .WithArguments(enemy);
         }
     }
 }
