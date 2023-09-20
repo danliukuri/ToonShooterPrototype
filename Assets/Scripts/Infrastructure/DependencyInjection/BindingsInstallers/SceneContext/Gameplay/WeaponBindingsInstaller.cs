@@ -6,7 +6,7 @@ using ToonShooterPrototype.Features.Weapon;
 using UnityEngine;
 using Zenject;
 
-namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstallers.SceneContext
+namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstallers.SceneContext.Gameplay
 {
     public class WeaponBindingsInstaller : MonoInstaller
     {

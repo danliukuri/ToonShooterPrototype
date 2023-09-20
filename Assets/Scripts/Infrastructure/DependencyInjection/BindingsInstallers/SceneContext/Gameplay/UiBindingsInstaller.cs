@@ -3,7 +3,7 @@ using ToonShooterPrototype.UI.LevelEndMenu;
 using UnityEngine;
 using Zenject;
 
-namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstallers.SceneContext
+namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstallers.SceneContext.Gameplay
 {
     public class UiBindingsInstaller : MonoInstaller
     {

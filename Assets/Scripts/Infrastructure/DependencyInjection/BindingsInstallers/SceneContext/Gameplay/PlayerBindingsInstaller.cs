@@ -1,5 +1,4 @@
-﻿using System;
-using Cinemachine;
+﻿using Cinemachine;
 using ToonShooterPrototype.Architecture.GameStates.Gameplay;
 using ToonShooterPrototype.Data.Dynamic;
 using ToonShooterPrototype.Data.Static.Configuration;
@@ -13,7 +12,7 @@ using UnityEngine;
 using UnityEngine.Pool;
 using Zenject;
 
-namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstallers.SceneContext
+namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstallers.SceneContext.Gameplay
 {
     public class PlayerBindingsInstaller : MonoInstaller
     {
@@ -152,5 +151,3 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
         private void BindAnimationActivator() => Container.BindInterfacesTo<PlayerAnimationActivator>().AsSingle();
     }
 }
-
-    
