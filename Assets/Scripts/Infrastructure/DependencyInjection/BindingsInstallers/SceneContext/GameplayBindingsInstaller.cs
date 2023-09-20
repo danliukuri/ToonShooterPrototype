@@ -19,7 +19,11 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
 
         private void BindStates()
         {
-            var gameStatesTypes = new List<Type> { typeof(SetupGameplayState) };
+            var gameStatesTypes = new List<Type>
+            {
+                typeof(SetupGameplayState), typeof(ProcessGameplayState),
+                typeof(VictoryGameplayState), typeof(DefeatGameplayState)
+            };
             gameStatesTypes.ForEach(BindState());
 
             Action<Type> BindState() => stateType =>
@@ -41,7 +45,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             Container
                 .BindInterfacesTo<StateMachine>()
                 .AsSingle()
-                .WhenInjectedInto(typeof(SceneBootstrapper));
+                .WhenInjectedInto(typeof(SceneBootstrapper), typeof(SetupGameplayState), typeof(ProcessGameplayState));
         }
     }
 }

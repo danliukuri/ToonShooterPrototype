@@ -1,26 +1,27 @@
 ﻿using System;
 using ToonShooterPrototype.Data.Dynamic;
+using ToonShooterPrototype.Features.Marksman;
+using ToonShooterPrototype.Infrastructure.Services;
 using UnityEngine;
 using Zenject;
 
 namespace ToonShooterPrototype.Features.Player
 {
-    public class PlayerDisabler : IInitializable, IDisposable
+    public class PlayerDisabler : IDisabler
     {
+        private readonly IMarksmanAnimationChanger _animationChanger;
         private readonly PlayerData _player;
         private readonly TickableManager _tickableManager;
 
-        public PlayerDisabler(PlayerData player, TickableManager tickableManager)
+        public PlayerDisabler(IMarksmanAnimationChanger animationChanger, PlayerData player,
+            TickableManager tickableManager)
         {
+            _animationChanger = animationChanger;
             _player = player;
             _tickableManager = tickableManager;
         }
 
-        public void Initialize() => _player.Health.ValueChangedToDefault += DisableEnemy;
-
-        public void Dispose() => _player.Health.ValueChangedToDefault -= DisableEnemy;
-
-        private void DisableEnemy(int health)
+        public void Disable()
         {
             _player.MovementForce = Vector3.zero;
 
@@ -30,6 +31,10 @@ namespace ToonShooterPrototype.Features.Player
                 _tickableManager.RemoveLate(lateTickable);
             foreach (IDisposable disposable in _player.DisposableServices)
                 disposable.Dispose();
+
+            _animationChanger.IsWalking = false;
+            _animationChanger.IsRunning = false;
+            _animationChanger.IsShooting = false;
         }
     }
 }

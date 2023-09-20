@@ -1,4 +1,6 @@
-﻿using Cinemachine;
+﻿using System;
+using Cinemachine;
+using ToonShooterPrototype.Architecture.GameStates.Gameplay;
 using ToonShooterPrototype.Data.Dynamic;
 using ToonShooterPrototype.Data.Static.Configuration;
 using ToonShooterPrototype.Data.Static.Configuration.Creation;
@@ -95,7 +97,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
                 .WithArguments(playerConfig)
                 .WhenInjectedInto(typeof(PlayerDataProvider), typeof(PlayerMover), typeof(PlayerRotator),
                     typeof(EnemyAi), typeof(PlayerShooter), typeof(PlayerAnimationActivator), typeof(PlayerShooter),
-                    typeof(PlayerWeaponSwitcher), typeof(PlayerDisabler));
+                    typeof(PlayerWeaponSwitcher), typeof(PlayerDisabler), typeof(ProcessGameplayState));
         }
 
         private void BindInventoryData()
@@ -131,14 +133,20 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
 
         private void BindViewSwitcher() => Container.BindInterfacesTo<PlayerViewSwitcher>().AsSingle();
 
-        private void BindDisabler() => Container.BindInterfacesTo<PlayerDisabler>().AsSingle();
+        private void BindDisabler()
+        {
+            Container
+                .BindInterfacesTo<PlayerDisabler>()
+                .AsSingle()
+                .WhenInjectedInto<ProcessGameplayState>();
+        }
 
         private void BindAnimationChanger()
         {
             Container
                 .BindInterfacesTo<MarksmanAnimationChanger>()
                 .AsCached()
-                .WhenInjectedInto(typeof(PlayerConfigurator), typeof(PlayerAnimationActivator));
+                .WhenInjectedInto(typeof(PlayerConfigurator), typeof(PlayerAnimationActivator), typeof(PlayerDisabler));
         }
 
         private void BindAnimationActivator() => Container.BindInterfacesTo<PlayerAnimationActivator>().AsSingle();
