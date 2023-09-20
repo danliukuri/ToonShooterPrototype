@@ -28,7 +28,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             Container
                 .BindInterfacesTo<PlayerProgressSaver>()
                 .AsSingle()
-                .WhenInjectedInto(typeof(SavingGameplayState));
+                .WhenInjectedInto(typeof(SavingGameplayState), typeof(MainMenuSceneBootstrapper));
         }
 
         private void BindPlayerProgressData()
