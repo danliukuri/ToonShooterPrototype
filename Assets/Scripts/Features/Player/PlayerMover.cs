@@ -19,6 +19,8 @@ namespace ToonShooterPrototype.Features.Player
 
         public void Initialize()
         {
+            _player.DisposableServices.Add(this);
+
             _movementInputService.HorizontalAxis.ValueUpdated += MoveHorizontally;
             _movementInputService.VerticalAxis.ValueUpdated += MoveVertically;
             _movementInputService.JumpButtonPressed += Jump;

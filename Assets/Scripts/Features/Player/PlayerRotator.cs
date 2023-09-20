@@ -4,7 +4,7 @@ using Zenject;
 
 namespace ToonShooterPrototype.Features.Player
 {
-    public class PlayerRotator : ILateTickable
+    public class PlayerRotator : IInitializable, ILateTickable
     {
         private readonly PlayerCameraData _camera;
         private readonly PlayerData _player;
@@ -14,6 +14,8 @@ namespace ToonShooterPrototype.Features.Player
             _camera = camera;
             _player = player;
         }
+
+        public void Initialize() => _player.LateTickableServices.Add(this);
 
         public void LateTick() => RotatePlayer();
 

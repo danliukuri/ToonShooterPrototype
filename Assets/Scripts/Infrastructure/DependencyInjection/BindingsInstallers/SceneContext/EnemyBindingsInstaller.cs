@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using ToonShooterPrototype.Data.Dynamic;
+﻿using ToonShooterPrototype.Data.Dynamic;
 using ToonShooterPrototype.Data.Static.Configuration;
 using ToonShooterPrototype.Features.Enemy;
 using ToonShooterPrototype.Features.Marksman;

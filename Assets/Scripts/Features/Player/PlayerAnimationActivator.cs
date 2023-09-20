@@ -40,6 +40,8 @@ namespace ToonShooterPrototype.Features.Player
 
         public void Initialize()
         {
+            _player.DisposableServices.Add(this);
+            
             _movementInputService.Axles.ValueChanged += StartWalking;
             _movementInputService.Axles.ValueChangedToDefault += StopWalking;
 

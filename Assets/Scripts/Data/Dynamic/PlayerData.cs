@@ -1,6 +1,9 @@
-﻿using ToonShooterPrototype.Data.Static.Configuration;
+﻿using System;
+using System.Collections.Generic;
+using ToonShooterPrototype.Data.Static.Configuration;
 using ToonShooterPrototype.Utilities.Wrappers;
 using UnityEngine;
+using Zenject;
 
 namespace ToonShooterPrototype.Data.Dynamic
 {
@@ -16,9 +19,13 @@ namespace ToonShooterPrototype.Data.Dynamic
 
         public Transform Transform { get; set; }
         public CharacterController CharacterController { get; set; }
-        
+
         public PlayerInventoryData Inventory { get; }
         public PlayerConfig Config { get; }
+
+        public IList<ITickable> TickableServices { get; } = new List<ITickable>();
+        public IList<ILateTickable> LateTickableServices { get; } = new List<ILateTickable>();
+        public IList<IDisposable> DisposableServices { get; } = new List<IDisposable>();
 
         public IObservableValue<int> Health { get; }
 
