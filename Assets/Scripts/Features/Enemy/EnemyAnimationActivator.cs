@@ -9,7 +9,11 @@ namespace ToonShooterPrototype.Features.Enemy
 
         public EnemyAnimationActivator(EnemyDataProvider enemy) => _enemy = enemy;
 
-        public void Initialize() => _enemy.Data.Health.ValueChangedToDefault += _enemy.Data.AnimationChanger.Death;
+        public void Initialize()
+        {
+            _enemy.Data.DisposableServices.Add(this);
+            _enemy.Data.Health.ValueChangedToDefault += _enemy.Data.AnimationChanger.Death;
+        }
 
         public void Dispose() => _enemy.Data.Health.ValueChangedToDefault -= _enemy.Data.AnimationChanger.Death;
 

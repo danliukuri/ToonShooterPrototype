@@ -19,6 +19,7 @@ namespace ToonShooterPrototype.Features.Enemy
         {
             Data.Agent = GetComponent<NavMeshAgent>();
             Data.Transform = GetComponent<Transform>();
+            Data.Collider = GetComponent<Collider>();
             Data.AnimationChanger.Animator = GetComponentInChildren<Animator>();
             Data.Weapon = GetComponentInChildren<IShootingWeaponDataProvider>().Data;
         }

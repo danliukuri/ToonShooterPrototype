@@ -25,6 +25,7 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             {
                 BindAi(enemy);
                 BindAnimationActivator(enemy);
+                BindDisabler(enemy);
             }
         }
 
@@ -71,6 +72,14 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
         {
             Container
                 .BindInterfacesTo<EnemyAnimationActivator>()
+                .AsCached()
+                .WithArguments(enemy);
+        }
+
+        private void BindDisabler(EnemyDataProvider enemy)
+        {
+            Container
+                .BindInterfacesTo<EnemyDisabler>()
                 .AsCached()
                 .WithArguments(enemy);
         }

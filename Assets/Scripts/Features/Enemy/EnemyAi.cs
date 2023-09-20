@@ -5,7 +5,7 @@ using Zenject;
 
 namespace ToonShooterPrototype.Features.Enemy
 {
-    public class EnemyAi : ITickable
+    public class EnemyAi : IInitializable, ITickable
     {
         private readonly EnemyDataProvider _enemyProvider;
         private readonly PlayerData _player;
@@ -17,6 +17,8 @@ namespace ToonShooterPrototype.Features.Enemy
             _shooter = shooter;
             _player = player;
         }
+
+        public void Initialize() => _enemyProvider.Data.TickableServices.Add(this);
 
         public void Tick()
         {
