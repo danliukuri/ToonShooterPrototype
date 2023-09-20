@@ -6,6 +6,7 @@ namespace ToonShooterPrototype.Data.Static.Configuration
     public class EnemyConfig : ScriptableObject
     {
         [field: SerializeField, Min(default)] public float SightRange { get; private set; }
+        [field: SerializeField, Min(default)] public float PreferableDistanceToTarget { get; private set; }
         [field: SerializeField, Min(default)] public float ShootHeight { get; private set; }
 
         [field: SerializeField, Min(default)] public int Health { get; private set; }

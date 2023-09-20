@@ -40,7 +40,13 @@ namespace ToonShooterPrototype.Features.Enemy
             }
         }
 
-        private void ChasePlayer(EnemyData enemy) => enemy.Agent.SetDestination(_player.Transform.position);
+        private void ChasePlayer(EnemyData enemy)
+        {
+            Vector3 target = _player.Transform.position;
+            Vector3 direction = target - enemy.Transform.position;
+            
+            enemy.Agent.SetDestination(target - direction.normalized * enemy.Config.PreferableDistanceToTarget);
+        }
 
         private void RotateTowards(EnemyData enemy, Vector3 point)
         {
