@@ -1,35 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using ToonShooterPrototype.Data.Dynamic;
 using Zenject;
 
 namespace ToonShooterPrototype.Features.Enemy
 {
     public class EnemyAnimationActivator : IInitializable, IDisposable, ITickable
     {
-        private readonly IEnumerable<EnemyData> _enemies;
+        private readonly EnemyDataProvider _enemy;
 
-        public EnemyAnimationActivator(IEnumerable<EnemyData> enemies) => _enemies = enemies;
+        public EnemyAnimationActivator(EnemyDataProvider enemy) => _enemy = enemy;
 
         public void Initialize()
         {
-            foreach (EnemyData enemy in _enemies)
-                enemy.Health.ValueChangedToDefault += enemy.AnimationChanger.Death;
+            _enemy.Data.DisposableServices.Add(this);
+            _enemy.Data.Health.ValueChangedToDefault += _enemy.Data.AnimationChanger.Death;
         }
 
-        public void Dispose()
-        {
-            foreach (EnemyData enemy in _enemies)
-                enemy.Health.ValueChangedToDefault -= enemy.AnimationChanger.Death;
-        }
+        public void Dispose() => _enemy.Data.Health.ValueChangedToDefault -= _enemy.Data.AnimationChanger.Death;
 
         public void Tick()
         {
-            foreach (EnemyData enemy in _enemies)
-            {
-                enemy.AnimationChanger.IsWalking = enemy.Agent.hasPath;
-                enemy.AnimationChanger.IsShooting = enemy.HasShootTarget;
-            }
+            _enemy.Data.AnimationChanger.IsWalking = _enemy.Data.Agent.hasPath;
+            _enemy.Data.AnimationChanger.IsShooting = _enemy.Data.HasShootTarget && _enemy.Data.IsTargetAlive;
         }
     }
 }

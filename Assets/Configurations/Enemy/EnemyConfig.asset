@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0413a934c1b64752a8f826a107739e07, type: 3}
   m_Name: EnemyConfig
   m_EditorClassIdentifier: 
-  <SightRange>k__BackingField: 15
+  <SightRange>k__BackingField: 30
+  <PreferableDistanceToTarget>k__BackingField: 15
   <ShootHeight>k__BackingField: 1.75
   <Health>k__BackingField: 100

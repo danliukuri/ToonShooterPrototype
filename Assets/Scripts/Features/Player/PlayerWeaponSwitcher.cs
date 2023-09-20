@@ -10,14 +10,21 @@ namespace ToonShooterPrototype.Features.Player
     {
         private readonly IAlphaButtonsInputService _alphaButtonsInputService;
         private readonly PlayerInventoryData _inventory;
+        private readonly PlayerData _player;
 
-        public PlayerWeaponSwitcher(PlayerInventoryData inventory, IAlphaButtonsInputService alphaButtonsInputService)
+        public PlayerWeaponSwitcher(PlayerData player, PlayerInventoryData inventory,
+            IAlphaButtonsInputService alphaButtonsInputService)
         {
+            _player = player;
             _inventory = inventory;
             _alphaButtonsInputService = alphaButtonsInputService;
         }
 
-        public void Initialize() => _alphaButtonsInputService.AlphaButtonPressed += SwitchWeapon;
+        public void Initialize()
+        {
+            _player.DisposableServices.Add(this);
+            _alphaButtonsInputService.AlphaButtonPressed += SwitchWeapon;
+        }
 
         public void Dispose() => _alphaButtonsInputService.AlphaButtonPressed -= SwitchWeapon;
 

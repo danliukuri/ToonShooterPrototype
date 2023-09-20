@@ -27,11 +27,17 @@ namespace ToonShooterPrototype.Features.Bullets
             {
                 _bulletVfxSpawner.Spawn(hit);
                 if (hit.collider.TryGetComponent(out IDamageableProvider damageableProvider))
-                    damageableProvider.Damageable.Health.Value -= weapon.Config.ShootDamage;
+                    DoDamage(weapon, damageableProvider);
             }
 
             IsAbleToShoot = false;
             _coroutineRunner.RunInvoke(() => IsAbleToShoot = true, weapon.Config.ShootDelay);
+        }
+
+        private static void DoDamage(ShootingWeaponData weapon, IDamageableProvider damageableProvider)
+        {
+            int newHealth = damageableProvider.Damageable.Health.Value - weapon.Config.ShootDamage;
+            damageableProvider.Damageable.Health.Value = newHealth < default(int) ? default : newHealth;
         }
     }
 }
