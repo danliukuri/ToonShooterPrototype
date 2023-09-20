@@ -1,4 +1,5 @@
-﻿using ToonShooterPrototype.Data.Dynamic;
+﻿using System.Linq;
+using ToonShooterPrototype.Data.Dynamic;
 using UnityEngine;
 using Zenject;
 
@@ -39,7 +40,8 @@ namespace ToonShooterPrototype.Features.Player
 
             if (Physics.Raycast(ray, out RaycastHit hit, _camera.Config.MaxViewDistance))
             {
-                viewDirection = hit.point - _player.Transform.position;
+                if(_camera.Config.AttractiveObjectsTags.Any(hit.collider.CompareTag))
+                    viewDirection = hit.point - _player.Transform.position;
                 _camera.ViewPoint = hit.point;
             }
 
