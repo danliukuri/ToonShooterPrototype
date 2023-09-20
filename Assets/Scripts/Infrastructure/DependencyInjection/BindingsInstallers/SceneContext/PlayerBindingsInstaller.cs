@@ -1,4 +1,5 @@
-﻿using Cinemachine;
+﻿using System;
+using Cinemachine;
 using ToonShooterPrototype.Architecture.GameStates.Gameplay;
 using ToonShooterPrototype.Data.Dynamic;
 using ToonShooterPrototype.Data.Static.Configuration;
@@ -132,14 +133,20 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
 
         private void BindViewSwitcher() => Container.BindInterfacesTo<PlayerViewSwitcher>().AsSingle();
 
-        private void BindDisabler() => Container.BindInterfacesTo<PlayerDisabler>().AsSingle();
+        private void BindDisabler()
+        {
+            Container
+                .BindInterfacesTo<PlayerDisabler>()
+                .AsSingle()
+                .WhenInjectedInto<ProcessGameplayState>();
+        }
 
         private void BindAnimationChanger()
         {
             Container
                 .BindInterfacesTo<MarksmanAnimationChanger>()
                 .AsCached()
-                .WhenInjectedInto(typeof(PlayerConfigurator), typeof(PlayerAnimationActivator));
+                .WhenInjectedInto(typeof(PlayerConfigurator), typeof(PlayerAnimationActivator), typeof(PlayerDisabler));
         }
 
         private void BindAnimationActivator() => Container.BindInterfacesTo<PlayerAnimationActivator>().AsSingle();

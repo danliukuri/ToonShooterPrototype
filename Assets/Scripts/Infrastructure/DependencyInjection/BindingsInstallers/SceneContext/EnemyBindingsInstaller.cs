@@ -83,7 +83,8 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
             Container
                 .BindInterfacesTo<EnemyDisabler>()
                 .AsCached()
-                .WithArguments(enemy);
+                .WithArguments(enemy)
+                .WhenInjectedInto(typeof(InitializableManager), typeof(DisposableManager));
         }
 
         private void BindEnemies()
