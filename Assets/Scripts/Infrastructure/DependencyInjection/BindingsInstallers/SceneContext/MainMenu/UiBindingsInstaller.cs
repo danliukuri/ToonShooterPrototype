@@ -5,7 +5,7 @@ using Zenject;
 
 namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstallers.SceneContext.MainMenu
 {
-    public class MainMenuUiBindingsInstaller : MonoInstaller
+    public class UiBindingsInstaller : MonoInstaller
     {
         [SerializeField] private VictoryCountTextProvider victoryCountTextProvider;
         [SerializeField] private DefeatCountTextProvider defeatCountTextProvider;

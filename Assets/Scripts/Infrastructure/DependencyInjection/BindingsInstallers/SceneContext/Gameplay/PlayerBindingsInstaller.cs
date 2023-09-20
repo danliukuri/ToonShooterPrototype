@@ -12,7 +12,7 @@ using UnityEngine;
 using UnityEngine.Pool;
 using Zenject;
 
-namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstallers.SceneContext
+namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstallers.SceneContext.Gameplay
 {
     public class PlayerBindingsInstaller : MonoInstaller
     {

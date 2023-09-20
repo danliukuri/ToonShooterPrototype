@@ -6,7 +6,7 @@ using ToonShooterPrototype.Utilities.Patterns.State.Containers;
 using ToonShooterPrototype.Utilities.Patterns.State.Machines;
 using Zenject;
 
-namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstallers.SceneContext
+namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstallers.SceneContext.Gameplay
 {
     public class GameplayBindingsInstaller : MonoInstaller
     {

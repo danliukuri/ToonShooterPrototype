@@ -7,7 +7,7 @@ using ToonShooterPrototype.Utilities.Wrappers;
 using UnityEngine;
 using Zenject;
 
-namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstallers.SceneContext
+namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstallers.SceneContext.Gameplay
 {
     public class EnemyBindingsInstaller : MonoInstaller
     {
