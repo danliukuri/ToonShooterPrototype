@@ -19,8 +19,8 @@ namespace ToonShooterPrototype.Features.Enemy
 
         public void Tick()
         {
-            _enemy.Data.AnimationChanger.IsWalking = _enemy.Data.Agent.hasPath;
-            _enemy.Data.AnimationChanger.IsShooting = _enemy.Data.HasShootTarget;
+            _enemy.Data.AnimationChanger.IsWalking = _enemy.Data.Agent.hasPath && _enemy.Data.IsTargetAlive;
+            _enemy.Data.AnimationChanger.IsShooting = _enemy.Data.HasShootTarget && _enemy.Data.IsTargetAlive;
         }
     }
 }

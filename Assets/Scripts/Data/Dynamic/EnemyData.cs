@@ -31,6 +31,7 @@ namespace ToonShooterPrototype.Data.Dynamic
         public IList<IDisposable> DisposableServices { get; } = new List<IDisposable>();
 
         public bool HasShootTarget { get; set; }
+        public bool IsTargetAlive { get; set; }
 
         public IObservableValue<int> Health { get; set; }
     }

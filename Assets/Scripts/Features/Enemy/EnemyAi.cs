@@ -23,20 +23,20 @@ namespace ToonShooterPrototype.Features.Enemy
         public void Tick()
         {
             EnemyData enemy = _enemyProvider.Data;
-            Transform target = _player.Transform;
 
-            float distanceToTarget = Vector3.Distance(enemy.Transform.position, target.position);
+            float distanceToTarget = Vector3.Distance(enemy.Transform.position, _player.Transform.position);
             bool isTargetInSightRange = distanceToTarget <= enemy.Config.SightRange;
             enemy.HasShootTarget = distanceToTarget <= enemy.Weapon.Config.ShootRange;
-
-            if (isTargetInSightRange)
+            enemy.IsTargetAlive = _player.Health.Value > default(int);
+            
+            if (isTargetInSightRange && enemy.IsTargetAlive)
                 ChasePlayer(enemy);
-            if (enemy.HasShootTarget)
+            if (enemy.HasShootTarget && enemy.IsTargetAlive)
             {
-                RotateTowards(enemy, target.position);
+                RotateTowards(enemy, _player.Transform.position);
                 if (_shooter.IsAbleToShoot)
                     _shooter.Shoot(enemy.Weapon,
-                        target.position + enemy.Config.ShootHeight * Vector3.up);
+                        _player.Transform.position + enemy.Config.ShootHeight * Vector3.up);
             }
         }
 
