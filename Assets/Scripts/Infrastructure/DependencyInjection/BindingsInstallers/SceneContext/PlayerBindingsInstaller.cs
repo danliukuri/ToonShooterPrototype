@@ -1,5 +1,4 @@
-﻿using System;
-using Cinemachine;
+﻿using Cinemachine;
 using ToonShooterPrototype.Architecture.GameStates.Gameplay;
 using ToonShooterPrototype.Data.Dynamic;
 using ToonShooterPrototype.Data.Static.Configuration;
@@ -152,5 +151,3 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
         private void BindAnimationActivator() => Container.BindInterfacesTo<PlayerAnimationActivator>().AsSingle();
     }
 }
-
-    
