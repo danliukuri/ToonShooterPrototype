@@ -1,4 +1,5 @@
-﻿using ToonShooterPrototype.Data.Dynamic;
+﻿using ToonShooterPrototype.Architecture.GameStates.Gameplay;
+using ToonShooterPrototype.Data.Dynamic;
 using ToonShooterPrototype.Data.Static.Configuration;
 using ToonShooterPrototype.Features.Enemy;
 using ToonShooterPrototype.Features.Marksman;
@@ -26,6 +27,8 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
                 BindAnimationActivator(enemy);
                 BindDisabler(enemy);
             }
+
+            BindEnemies();
         }
 
         private void BindConfiguration()
@@ -81,6 +84,15 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
                 .BindInterfacesTo<EnemyDisabler>()
                 .AsCached()
                 .WithArguments(enemy);
+        }
+
+        private void BindEnemies()
+        {
+            Container
+                .BindInterfacesAndSelfTo<EnemyDataProvider[]>()
+                .FromInstance(enemies)
+                .AsSingle()
+                .WhenInjectedInto<ProcessGameplayState>();
         }
     }
 }

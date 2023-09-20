@@ -21,7 +21,8 @@ namespace ToonShooterPrototype.Infrastructure.DependencyInjection.BindingsInstal
         {
             var gameStatesTypes = new List<Type>
             {
-                typeof(SetupGameplayState), typeof(ProcessGameplayState), typeof(DefeatGameplayState)
+                typeof(SetupGameplayState), typeof(ProcessGameplayState),
+                typeof(VictoryGameplayState), typeof(DefeatGameplayState)
             };
             gameStatesTypes.ForEach(BindState());
 
